@@ -8,6 +8,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {BookingComponent} from './booking/booking.component';
 import {RoomListComponent} from './room-list/room-list.component';
+import {HomeComponent} from './home/home.component';
 
 const routes: Routes = [{
   component: GuestRegistrationComponent,
@@ -22,6 +23,13 @@ const routes: Routes = [{
   }, {
     component: RoomListComponent,
     path: 'room-list'
+  }, {
+    component: HomeComponent,
+    path: 'home',
+  }, {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
   }];
 
 @NgModule({
@@ -31,7 +39,8 @@ const routes: Routes = [{
     GuestRegistrationComponent,
     LoginComponent,
     BookingComponent,
-    RoomListComponent
+    RoomListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
