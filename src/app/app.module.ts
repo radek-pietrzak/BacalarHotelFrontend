@@ -1,9 +1,15 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { GuestRegistrationComponent } from './guest-registration/guest-registration.component';
+import {AppComponent} from './app.component';
+import {NavbarComponent} from './navbar/navbar.component';
+import {GuestRegistrationComponent} from './guest-registration/guest-registration.component';
+import {RouterModule, Routes} from '@angular/router';
+
+const routes: Routes = [{
+  component: GuestRegistrationComponent,
+  path: 'guest-registration'
+}];
 
 @NgModule({
   declarations: [
@@ -12,9 +18,11 @@ import { GuestRegistrationComponent } from './guest-registration/guest-registrat
     GuestRegistrationComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
