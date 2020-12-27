@@ -7,6 +7,7 @@ import {GuestRegistrationComponent} from './guest-registration/guest-registratio
 import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {BookingComponent} from './booking/booking.component';
+import {RoomListComponent} from './room-list/room-list.component';
 
 const routes: Routes = [{
   component: GuestRegistrationComponent,
@@ -18,6 +19,9 @@ const routes: Routes = [{
   {
     component: BookingComponent,
     path: 'booking'
+  }, {
+    component: RoomListComponent,
+    path: 'room-list'
   }];
 
 @NgModule({
@@ -26,7 +30,8 @@ const routes: Routes = [{
     NavbarComponent,
     GuestRegistrationComponent,
     LoginComponent,
-    BookingComponent
+    BookingComponent,
+    RoomListComponent
   ],
   imports: [
     BrowserModule,
