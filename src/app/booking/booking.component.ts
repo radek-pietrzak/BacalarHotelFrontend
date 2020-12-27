@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-booking',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) {
+  }
+
+  redirectToRoomList(): void {
+    this.router.navigateByUrl('/room-list');
+  }
 
   ngOnInit(): void {
   }
