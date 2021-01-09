@@ -9,6 +9,9 @@ import {LoginComponent} from './login/login.component';
 import {BookingComponent} from './booking/booking.component';
 import {RoomListComponent} from './room-list/room-list.component';
 import {HomeComponent} from './home/home.component';
+import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {RoomFormComponent} from './room-form/room-form.component';
 
 const routes: Routes = [{
   component: GuestRegistrationComponent,
@@ -40,11 +43,14 @@ const routes: Routes = [{
     LoginComponent,
     BookingComponent,
     RoomListComponent,
-    HomeComponent
+    HomeComponent,
+    RoomFormComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

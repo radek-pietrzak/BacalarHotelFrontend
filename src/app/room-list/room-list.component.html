@@ -1,1 +1,44 @@
-<p>room-list works!</p>
+<h3>Room list</h3>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Room number</th>
+    <th>Number of single bed</th>
+    <th>Number of double bed</th>
+<!--    <th>Number of person</th>-->
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let room of rooms">
+    <td>{{room.id}}</td>
+    <td>{{room.roomNumber}}</td>
+    <td>{{room.numberOfSingleBed}}</td>
+    <td>{{room.numberOfDoubleBed}}</td>
+<!--    <td>{{room.numberOfPerson}}</td>-->
+  </tr>
+  </tbody>
+</table>
+<!--<div class="card my-5">-->
+<!--  <div class="card-body">-->
+<!--    <table class="table table-bordered table-striped">-->
+<!--      <thead class="thead-dark">-->
+<!--      <tr>-->
+<!--        <th scope="col">ID</th>-->
+<!--        <th scope="col">Room number</th>-->
+<!--        <th scope="col">Number of single bed</th>-->
+<!--        <th scope="col">Number of double bed</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--      <tr *ngFor="let room of rooms">-->
+<!--        <td>{{ room.id }}</td>-->
+<!--        <td>{{ room.roomNumber }}</td>-->
+<!--        <td>{{ room.numberOfSingleBed }}</td>-->
+<!--        <td>{{ room.numberOfDoubleBed }}</td>-->
+<!--      </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
+<!--  </div>-->
+<!--</div>-->
+
