@@ -29,6 +29,10 @@ const routes: Routes = [{
   }, {
     component: HomeComponent,
     path: 'home',
+  },
+  {
+    component: RoomFormComponent,
+    path: 'room-form',
   }, {
     path: '',
     redirectTo: '/home',

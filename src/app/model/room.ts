@@ -3,6 +3,6 @@ export class Room {
   roomNumber: number;
   numberOfSingleBed: number;
   numberOfDoubleBed: number;
-  numberOfPerson: number;
+  numberOfPerson?: number;
 
 }

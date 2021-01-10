@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, Subscription} from 'rxjs';
+import {Observable} from 'rxjs';
 import {Room} from '../model/room';
 
 @Injectable()
@@ -12,5 +12,8 @@ export class RoomService {
 
   public findAll(): Observable<Room[]> {
     return this.httpClient.get<Room[]>(this.url);
+  }
+  public registerRoom(room: Room): Observable<Room> {
+    return this.httpClient.post<Room>(this.url, room);
   }
 }
