@@ -3,11 +3,6 @@ export class Room {
   roomNumber: number;
   numberOfSingleBed: number;
   numberOfDoubleBed: number;
+  numberOfPerson: number;
 
-
-  // constructor(roomNumber: number, numberOfSingleBed: number, numberOfDoubleBed: number) {
-  //   this.roomNumber = roomNumber;
-  //   this.numberOfSingleBed = numberOfSingleBed;
-  //   this.numberOfDoubleBed = numberOfDoubleBed;
-  // }
 }
