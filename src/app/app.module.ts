@@ -12,6 +12,7 @@ import {HomeComponent} from './home/home.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {RoomFormComponent} from './room-form/room-form.component';
+import {GuestListComponent} from './guest-list/guest-list.component';
 
 const routes: Routes = [{
   component: GuestRegistrationComponent,
@@ -37,6 +38,9 @@ const routes: Routes = [{
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
+  }, {
+  component: GuestListComponent,
+    path: 'guest-list'
   }];
 
 @NgModule({
@@ -48,7 +52,8 @@ const routes: Routes = [{
     BookingComponent,
     RoomListComponent,
     HomeComponent,
-    RoomFormComponent
+    RoomFormComponent,
+    GuestListComponent
   ],
   imports: [
     BrowserModule,
