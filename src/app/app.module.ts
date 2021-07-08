@@ -13,6 +13,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {RoomFormComponent} from './room-form/room-form.component';
 import {GuestListComponent} from './guest-list/guest-list.component';
+import {ExpenseListComponent} from './expense-list/expense-list.component';
 
 const routes: Routes = [{
   component: GuestRegistrationComponent,
@@ -41,6 +42,9 @@ const routes: Routes = [{
   }, {
   component: GuestListComponent,
     path: 'guest-list'
+  }, {
+    component: ExpenseListComponent,
+    path: 'expense-list'
   }];
 
 @NgModule({
@@ -53,7 +57,8 @@ const routes: Routes = [{
     RoomListComponent,
     HomeComponent,
     RoomFormComponent,
-    GuestListComponent
+    GuestListComponent,
+    ExpenseListComponent
   ],
   imports: [
     BrowserModule,
