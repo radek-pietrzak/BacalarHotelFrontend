@@ -1,0 +1,63 @@
+<div class="container-fluid">
+  <div>
+    <a href="http://localhost:4200/expense-list" class="nav-link">Go back to list</a>
+  </div>
+  <div class="form-row">
+    <div class="col-8 col-md-6">
+      <form [formGroup]="expenseAddForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <div>
+            <label>
+              User: <input type="text" class="form-control" formControlName="user" name="user" id="user" value="Radek">
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div>
+            <div>
+              <label>
+                Amount: <input type="text" class="form-control" formControlName="amount" name="amount" value="123">
+              </label>
+            </div>
+          </div>
+          <div>
+            <div>
+              <label>
+                Currency: <input type="text" class="form-control" formControlName="currency" name="currency" value="PLN">
+              </label>
+            </div>
+          </div>
+          <div>
+            <div>
+              <label>
+                Description: <input type="text" class="form-control" formControlName="description" name="description" value="Grocery">
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>
+            PayDate: <input type="date" class="form-control" formControlName="payDate" name="payDate" value="2021-07-09">
+          </label>
+        </div>
+        <div class="form-group">
+          <label>
+            Pay method: <input type="text" class="form-control" formControlName="payMethodName" name="payMethodName" value="Some pay method">
+          </label>
+        </div>
+        <div class="form-group">
+          <label>
+            Category: <input type="text" class="form-control" formControlName="categoryName" name="categoryName" value="Some category">
+          </label>
+        </div>
+        <div class="form-group">
+          <div>
+            <button type="submit" class="btn btn-primary">
+              Add Expense
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

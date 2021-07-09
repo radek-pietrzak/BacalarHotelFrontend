@@ -9,20 +9,21 @@ import {LoginComponent} from './login/login.component';
 import {BookingComponent} from './booking/booking.component';
 import {RoomListComponent} from './room-list/room-list.component';
 import {HomeComponent} from './home/home.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {RoomFormComponent} from './room-form/room-form.component';
 import {GuestListComponent} from './guest-list/guest-list.component';
 import {ExpenseListComponent} from './expense-list/expense-list.component';
+import {ExpenseAddComponent} from './expense-add/expense-add.component';
 
-const routes: Routes = [{
-  component: GuestRegistrationComponent,
-  path: 'guest-registration'
-}, {
-  component: LoginComponent,
-  path: 'log-in'
-},
+const routes: Routes = [
   {
+    component: GuestRegistrationComponent,
+    path: 'guest-registration'
+  }, {
+    component: LoginComponent,
+    path: 'log-in'
+  }, {
     component: BookingComponent,
     path: 'booking'
   }, {
@@ -31,8 +32,7 @@ const routes: Routes = [{
   }, {
     component: HomeComponent,
     path: 'home',
-  },
-  {
+  }, {
     component: RoomFormComponent,
     path: 'room-form',
   }, {
@@ -40,12 +40,16 @@ const routes: Routes = [{
     redirectTo: '/home',
     pathMatch: 'full'
   }, {
-  component: GuestListComponent,
+    component: GuestListComponent,
     path: 'guest-list'
   }, {
     component: ExpenseListComponent,
     path: 'expense-list'
-  }];
+  }, {
+    component: ExpenseAddComponent,
+    path: 'expense-add'
+  }
+];
 
 @NgModule({
   declarations: [
@@ -58,13 +62,15 @@ const routes: Routes = [{
     HomeComponent,
     RoomFormComponent,
     GuestListComponent,
-    ExpenseListComponent
+    ExpenseListComponent,
+    ExpenseAddComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

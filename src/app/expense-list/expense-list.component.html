@@ -1,4 +1,7 @@
 <h3>Expense list</h3>
+<div>
+  <a href="http://localhost:4200/expense-add" class="nav-link">Add New Expense</a>
+</div>
 <div class="card my-5">
   <div class="card-body">
     <table class="table table-bordered table-striped">
@@ -9,7 +12,13 @@
         <th scope="col">Amount</th>
         <th scope="col">Currency</th>
         <th scope="col">Description</th>
-        <th scope="col">payDate</th>
+        <th scope="col">Pay Date</th>
+        <th scope="col">Pay Method</th>
+        <th scope="col">Category</th>
+        <th scope="col">Created by</th>
+        <th scope="col">Updated by</th>
+        <th scope="col">Create date</th>
+        <th scope="col">Update date</th>
       </tr>
       </thead>
       <tbody>
@@ -20,6 +29,12 @@
         <td>{{ expense.currency }}</td>
         <td>{{ expense.description }}</td>
         <td>{{ expense.payDate }}</td>
+        <td>{{ expense.payMethod.payMethodName }}</td>
+        <td>{{ expense.expenseCategory.categoryName }}</td>
+        <td>{{ expense.createdUser }}</td>
+        <td>{{ expense.updatedUser }}</td>
+        <td>{{ expense.createdDate }}</td>
+        <td>{{ expense.updatedDate }}</td>
       </tr>
       </tbody>
     </table>

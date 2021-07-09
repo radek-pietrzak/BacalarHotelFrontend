@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Expense} from '../model/expense';
+import {ExpenseRequest} from '../model/expense-request';
 
 @Injectable()
 export class ExpenseService {
@@ -10,11 +11,18 @@ export class ExpenseService {
   constructor(private httpClient: HttpClient) {
   }
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
+
   public findAll(): Observable<Expense[]> {
     return this.httpClient.get<Expense[]>(this.url);
   }
 
-  // public registerGuest(guest: Guest): Observable<Guest> {
-  //   return this.httpClient.post<Guest>(this.url, guest);
-  // }
+
+  public addExpense(expenseRequest: ExpenseRequest): Observable<ExpenseRequest> {
+    return this.httpClient.put<ExpenseRequest>(this.url, expenseRequest, this.httpOptions);
+  }
 }
