@@ -3,6 +3,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Expense} from '../model/expense';
 import {ExpenseRequest} from '../model/expense-request';
+import {ExpenseCriteriaRequest} from '../model/expense-criteria-request';
+import {ResponseExpenses} from '../model/response-expenses';
 
 @Injectable()
 export class ExpenseService {
@@ -12,15 +14,17 @@ export class ExpenseService {
   }
 
   httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
+    headers: new HttpHeaders({'Content-Type': 'application/json'}),
+    observable: ResponseExpenses
   };
 
   public findAll(): Observable<Expense[]> {
     return this.httpClient.get<Expense[]>(this.url);
   }
 
+  public findAllPost(criteriaRequest: ExpenseCriteriaRequest): Observable<ResponseExpenses> {
+    return this.httpClient.post<ResponseExpenses>(this.url, criteriaRequest, this.httpOptions);
+  }
 
   public addExpense(expenseRequest: ExpenseRequest): Observable<ExpenseRequest> {
     return this.httpClient.put<ExpenseRequest>(this.url, expenseRequest, this.httpOptions);

@@ -11,15 +11,6 @@ import {ExpenseModification} from '../model/expense-modification';
 })
 export class ExpenseAddComponent implements OnInit {
   expenseAddForm: FormGroup;
-  // expense: Expense = {
-  //   user: '',
-  //   amount: 0,
-  //   currency: '',
-  //   description: '',
-  //   payDate: '',
-  //   payMethod: {payMethodName: ''},
-  //   expenseCategory: {categoryName: ''},
-  // };
 
   constructor(private httpService: ExpenseService) {
   }
@@ -55,7 +46,8 @@ export class ExpenseAddComponent implements OnInit {
     this.httpService
       .addExpense(expenseRequest)
       .subscribe(() => {
-        alert('Expense created');
+        alert('Expense added');
+        // this.expenseAddForm.reset();
       });
   }
 
