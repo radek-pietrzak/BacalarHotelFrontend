@@ -14,8 +14,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {RoomFormComponent} from './room-form/room-form.component';
 import {GuestListComponent} from './guest-list/guest-list.component';
 import {ExpenseListComponent} from './expense-list/expense-list.component';
-import {ExpenseAddComponent} from './expense-add/expense-add.component';
-import {ExpenseListPostComponent} from './expense-list-post/expense-list-post.component';
 
 const routes: Routes = [
   {
@@ -46,12 +44,6 @@ const routes: Routes = [
   }, {
     component: ExpenseListComponent,
     path: 'expense-list'
-  }, {
-    component: ExpenseAddComponent,
-    path: 'expense-add'
-  }, {
-    component: ExpenseListPostComponent,
-    path: 'expense-list-post'
   }
 ];
 
@@ -67,8 +59,7 @@ const routes: Routes = [
     RoomFormComponent,
     GuestListComponent,
     ExpenseListComponent,
-    ExpenseAddComponent,
-    ExpenseListPostComponent
+    ExpenseListComponent
   ],
   imports: [
     BrowserModule,

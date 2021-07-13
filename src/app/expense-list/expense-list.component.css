@@ -1,0 +1,15 @@
+.table-head-light-blue {
+  color: black;
+  background-color: #99ccff;
+}
+
+.table-stripped {
+}
+
+.table-stripped:nth-child(odd) {
+  background-color: #e6f2ff;
+}
+
+.table-stripped:nth-child(even) {
+  background-color: white;
+}

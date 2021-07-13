@@ -1,46 +1,73 @@
 <h3>Expense list</h3>
-<div>
-  <a href="http://localhost:4200/expense-add" class="nav-link">Add New Expense</a>
-</div>
-<div>
-  <a href="http://localhost:4200/expense-list-post" class="nav-link">Post list</a>
-</div>
 <div class="card my-5">
   <div class="card-body">
-    <table class="table table-bordered table-striped" >
-      <thead class="thead-dark sticky-top" >
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">User</th>
-        <th scope="col">Amount</th>
-        <th scope="col">Currency</th>
-        <th scope="col">Description</th>
-        <th scope="col">Pay Date</th>
-        <th scope="col">Pay Method</th>
-        <th scope="col">Category</th>
-        <th scope="col">Created by</th>
-        <th scope="col">Updated by</th>
-        <th scope="col">Create date</th>
-        <th scope="col">Update date</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let expense of expenses">
-        <td>{{ expense.id }}</td>
-        <td>{{ expense.user }}</td>
-        <td>{{ expense.amount }}</td>
-        <td>{{ expense.currency }}</td>
-        <td>{{ expense.description }}</td>
-        <td>{{ expense.payDate }}</td>
-        <td>{{ expense.payMethod.payMethodName }}</td>
-        <td>{{ expense.expenseCategory.categoryName }}</td>
-        <td>{{ expense.createdUser }}</td>
-        <td>{{ expense.updatedUser }}</td>
-        <td>{{ expense.createdDate }}</td>
-        <td>{{ expense.updatedDate }}</td>
-      </tr>
-      </tbody>
-    </table>
+    <form [formGroup]="expenseAddForm" (ngSubmit)="onSubmit()">
+      <table class="table table-stripped">
+        <thead class="table-head-light-blue">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">User</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Currency</th>
+          <th scope="col">Description</th>
+          <th scope="col">Pay Date</th>
+          <th scope="col">Pay Method</th>
+          <th scope="col">Category</th>
+<!--          <th scope="col">Created by</th>-->
+<!--          <th scope="col">Updated by</th>-->
+<!--          <th scope="col">Create date</th>-->
+<!--          <th scope="col">Update date</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="col">
+            <button type="submit" class="btn btn-primary ">Add</button>
+          </th>
+          <th scope="col">
+            <input type="text" class="form-control" formControlName="user" name="user" id="user" value="Radek">
+          </th>
+          <th scope="col">
+            <input type="text" class="form-control" formControlName="amount" name="amount" id="amount" value="0">
+          </th>
+          <th scope="col">
+            <input type="text" class="form-control" formControlName="currency"
+                   name="currency" id="currency" value="PLN">
+          </th>
+          <th scope="col">
+            <input type="text" class="form-control" formControlName="description" name="description" id="description"
+                   value="">
+          </th>
+          <th scope="col">
+            <input type="date" class="form-control" formControlName="payDate" name="payDate" id="payDate"
+                   value="{{ getDate() | date: 'yyyy-MM-dd'}}">
+          </th>
+          <th scope="col">
+            <input type="text" class="form-control" formControlName="payMethodName"
+                   name="payMethodName" id="payMethodName" value="Credit Card">
+          </th>
+          <th scope="col">
+            <input type="text" class="form-control" formControlName="categoryName" name="categoryName"
+                   id="categoryName" value="Food at home">
+          </th>
+        </tr>
+        <tr *ngFor="let expense of responseExpenses.expenses" class="table-stripped">
+          <td>{{ expense.id }}</td>
+          <td>{{ expense.user }}</td>
+          <td>{{ expense.amount }}</td>
+          <td>{{ expense.currency }}</td>
+          <td>{{ expense.description }}</td>
+          <td>{{ expense.payDate }}</td>
+          <td>{{ expense.payMethod.payMethodName }}</td>
+          <td>{{ expense.expenseCategory.categoryName }}</td>
+<!--          <td>{{ expense.createdUser }}</td>-->
+<!--          <td>{{ expense.updatedUser }}</td>-->
+<!--          <td>{{ expense.createdDate }}</td>-->
+<!--          <td>{{ expense.updatedDate }}</td>-->
+        </tr>
+        </tbody>
+      </table>
+    </form>
   </div>
 </div>
 
