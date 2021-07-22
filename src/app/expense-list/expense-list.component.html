@@ -10,45 +10,45 @@
           <th scope="col">Amount</th>
           <th scope="col">Currency</th>
           <th scope="col">Description</th>
-          <th scope="col">Pay Date</th>
-          <th scope="col">Pay Method</th>
           <th scope="col">Category</th>
-<!--          <th scope="col">Created by</th>-->
-<!--          <th scope="col">Updated by</th>-->
-<!--          <th scope="col">Create date</th>-->
-<!--          <th scope="col">Update date</th>-->
+          <th scope="col">Pay Method</th>
+          <th scope="col">Pay Date</th>
+
+          <!--          <th scope="col">Created by</th>-->
+          <!--          <th scope="col">Updated by</th>-->
+          <!--          <th scope="col">Create date</th>-->
+          <!--          <th scope="col">Update date</th>-->
         </tr>
         </thead>
         <tbody>
         <tr>
           <th scope="col">
-            <button type="submit" class="btn btn-primary ">Add</button>
+            <button type="submit" class="btn-floating waves-light table-head-light-blue">
+              <i class="material-icons">add</i>
+            </button>
           </th>
           <th scope="col">
-            <input type="text" class="form-control" formControlName="user" name="user" id="user" value="Radek">
+            <input type="text" class="form-control" formControlName="user" name="user" id="user">
           </th>
           <th scope="col">
-            <input type="text" class="form-control" formControlName="amount" name="amount" id="amount" value="0">
+            <input type="text" class="form-control" formControlName="amount" name="amount" id="amount">
           </th>
           <th scope="col">
-            <input type="text" class="form-control" formControlName="currency"
-                   name="currency" id="currency" value="PLN">
+            <input type="text" class="form-control" formControlName="currency" name="currency" id="currency">
           </th>
           <th scope="col">
-            <input type="text" class="form-control" formControlName="description" name="description" id="description"
-                   value="">
-          </th>
-          <th scope="col">
-            <input type="date" class="form-control" formControlName="payDate" name="payDate" id="payDate"
-                   value="{{ getDate() | date: 'yyyy-MM-dd'}}">
-          </th>
-          <th scope="col">
-            <input type="text" class="form-control" formControlName="payMethodName"
-                   name="payMethodName" id="payMethodName" value="Credit Card">
+            <input type="text" class="form-control" formControlName="description" name="description" id="description">
           </th>
           <th scope="col">
             <input type="text" class="form-control" formControlName="categoryName" name="categoryName"
-                   id="categoryName" value="Food at home">
+                   id="categoryName">
+          </th>
+          <th scope="col">
+            <input type="text" class="form-control" formControlName="payMethodName" name="payMethodName"
+                   id="payMethodName">
+          </th>
+          <th scope="col">
+            <input type="date" class="form-control" formControlName="payDate" name="payDate" id="payDate">
           </th>
         </tr>
         <tr *ngFor="let expense of responseExpenses.expenses" class="table-stripped">
@@ -57,13 +57,13 @@
           <td>{{ expense.amount }}</td>
           <td>{{ expense.currency }}</td>
           <td>{{ expense.description }}</td>
-          <td>{{ expense.payDate }}</td>
-          <td>{{ expense.payMethod.payMethodName }}</td>
           <td>{{ expense.expenseCategory.categoryName }}</td>
-<!--          <td>{{ expense.createdUser }}</td>-->
-<!--          <td>{{ expense.updatedUser }}</td>-->
-<!--          <td>{{ expense.createdDate }}</td>-->
-<!--          <td>{{ expense.updatedDate }}</td>-->
+          <td>{{ expense.payMethod.payMethodName }}</td>
+          <td>{{ expense.payDate }}</td>
+          <!--          <td>{{ expense.createdUser }}</td>-->
+          <!--          <td>{{ expense.updatedUser }}</td>-->
+          <!--          <td>{{ expense.createdDate }}</td>-->
+          <!--          <td>{{ expense.updatedDate }}</td>-->
         </tr>
         </tbody>
       </table>

@@ -7,7 +7,7 @@ import {SearchSortCriterion} from '../model/search-sort-criterion';
 import {SearchSpecCriterion} from '../model/search-spec-criterion';
 import {ResponseExpenses} from '../model/response-expenses';
 import {ExpenseModification} from '../model/expense-modification';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ExpenseRequest} from '../model/expense-request';
 import {DatePipe} from '@angular/common';
 
@@ -15,11 +15,13 @@ import {DatePipe} from '@angular/common';
   selector: 'app-expense-post',
   templateUrl: './expense-list.component.html',
   styleUrls: ['./expense-list.component.css'],
-  providers: [ExpenseService]
+  providers: [ExpenseService, DatePipe]
 })
 export class ExpenseListComponent implements OnInit {
+  datePipeString: string;
 
-  constructor(private expenseService: ExpenseService) {
+  constructor(private datePipe: DatePipe, private expenseService: ExpenseService) {
+    this.datePipeString = datePipe.transform(Date.now(), 'yyyy-MM-dd');
   }
 
   expenses: Expense[] = [];
@@ -66,13 +68,13 @@ export class ExpenseListComponent implements OnInit {
       .subscribe(response => this.responseExpenses = response);
 
     this.expenseAddForm = new FormGroup({
-      user: new FormControl(),
-      amount: new FormControl(),
-      currency: new FormControl(),
-      description: new FormControl(),
-      payDate: new FormControl(),
-      payMethodName: new FormControl(),
-      categoryName: new FormControl(),
+      user: new FormControl('Radek', Validators.required),
+      amount: new FormControl('0', Validators.required),
+      currency: new FormControl('PLN', Validators.required),
+      description: new FormControl('Some description', Validators.required),
+      payDate: new FormControl(this.datePipeString, Validators.required),
+      payMethodName: new FormControl('Credit card', Validators.required),
+      categoryName: new FormControl('Some category', Validators.required),
     });
   }
 
