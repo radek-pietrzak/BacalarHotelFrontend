@@ -8,6 +8,11 @@
   background-color: #99ccff;
 }
 
+.buttons-light-red {
+  color: white;
+  background-color: #ffb3b3;
+}
+
 .page-name {
   color: black;
   padding: 10px;

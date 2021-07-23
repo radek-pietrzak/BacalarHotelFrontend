@@ -138,4 +138,11 @@ export class ExpenseListComponent implements OnInit {
     this.expenseService.findAllPost(this.criteriaRequest)
       .subscribe(response => this.responseExpenses = response);
   }
+
+  deleteExpense(id: number): void {
+    if (confirm('Are you sure to delete this expense?')) {
+      this.expenseService.deleteExpense(id.toString()).subscribe();
+      window.location.reload();
+    }
+  }
 }

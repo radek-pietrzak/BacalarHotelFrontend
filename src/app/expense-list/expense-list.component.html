@@ -89,7 +89,11 @@
           </th>
         </tr>
         <tr *ngFor="let expense of responseExpenses.expenses" class="table-stripped">
-          <td>{{ expense.id }}</td>
+          <td>
+            <button type="button" class="btn-floating waves-light buttons-light-red" (click)="deleteExpense(expense.id)">
+              <i class="material-icons">remove</i>
+            </button>
+          </td>
           <td>{{ expense.user }}</td>
           <td>{{ expense.amount }}</td>
           <td>{{ expense.currency }}</td>

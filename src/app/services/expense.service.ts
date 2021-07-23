@@ -29,4 +29,8 @@ export class ExpenseService {
   public addExpense(expenseRequest: ExpenseRequest): Observable<ExpenseRequest> {
     return this.httpClient.put<ExpenseRequest>(this.url, expenseRequest, this.httpOptions);
   }
+
+  public deleteExpense(id: string): Observable<string> {
+    return this.httpClient.delete<string>(this.url + '/' + id);
+  }
 }
