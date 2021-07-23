@@ -18,11 +18,12 @@ import {DatePipe} from '@angular/common';
   providers: [ExpenseService, DatePipe]
 })
 export class ExpenseListComponent implements OnInit {
-  datePipeString: string;
 
   constructor(private datePipe: DatePipe, private expenseService: ExpenseService) {
     this.datePipeString = datePipe.transform(Date.now(), 'yyyy-MM-dd');
   }
+
+  datePipeString: string;
 
   expenses: Expense[] = [];
   expenseAddForm: FormGroup;
@@ -35,7 +36,7 @@ export class ExpenseListComponent implements OnInit {
   };
 
 
-  private page: Page = {
+  page: Page = {
     number: 0,
     size: 10
   };
@@ -101,8 +102,40 @@ export class ExpenseListComponent implements OnInit {
       });
   }
 
-  getDate(): Date {
-    return new Date();
+  previousPage(): void {
+    if (this.page.number > 0) {
+      this.page.number = this.page.number - 1;
+    }
+    this.expenseService.findAllPost(this.criteriaRequest)
+      .subscribe(response => this.responseExpenses = response);
   }
 
+  nextPage(): void {
+    if (this.responseExpenses.hasNextPage) {
+      this.page.number = this.page.number + 1;
+    }
+    this.expenseService.findAllPost(this.criteriaRequest)
+      .subscribe(response => this.responseExpenses = response);
+  }
+
+  setPageSize10(): void {
+    this.page.size = 10;
+    this.page.number = 0;
+    this.expenseService.findAllPost(this.criteriaRequest)
+      .subscribe(response => this.responseExpenses = response);
+  }
+
+  setPageSize20(): void {
+    this.page.size = 20;
+    this.page.number = 0;
+    this.expenseService.findAllPost(this.criteriaRequest)
+      .subscribe(response => this.responseExpenses = response);
+  }
+
+  setPageSize50(): void {
+    this.page.size = 50;
+    this.page.number = 0;
+    this.expenseService.findAllPost(this.criteriaRequest)
+      .subscribe(response => this.responseExpenses = response);
+  }
 }

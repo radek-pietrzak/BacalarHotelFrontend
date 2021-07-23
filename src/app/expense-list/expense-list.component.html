@@ -1,6 +1,43 @@
-<h3>Expense list</h3>
+<h4>Expense list</h4>
 <div class="card my-5">
   <div class="card-body">
+    <ul>
+      <li class="float-left">
+        <button type="button" class="btn-floating waves-light buttons-light-blue" (click)="previousPage()">
+          <i class="material-icons">arrow_back</i>
+        </button>
+      </li>
+      <li class="float-left page-name font-weight-bold">
+        Page:  {{page.number + 1}}
+      </li>
+      <li class="float-left">
+        <button type="button" class="btn-floating waves-light buttons-light-blue" (click)="nextPage()">
+          <i class="material-icons">arrow_forward</i>
+        </button>
+      </li>
+      <li class="float-left page-name font-weight-bold">
+        Page Size:
+      </li>
+      <li class="float-left">
+        <button type="button" class="btn-floating waves-light buttons-light-blue font-weight-bold"
+                (click)="setPageSize10()">
+          10
+        </button>
+      </li>
+      <li class="float-left">
+        <button type="button" class="btn-floating waves-light buttons-light-blue font-weight-bold"
+                (click)="setPageSize20()">
+          20
+        </button>
+      </li>
+      <li class="float-left">
+        <button type="button" class="btn-floating waves-light buttons-light-blue font-weight-bold"
+                (click)="setPageSize50()">
+          50
+        </button>
+      </li>
+    </ul>
+    <br>
     <form [formGroup]="expenseAddForm" (ngSubmit)="onSubmit()">
       <table class="table table-stripped">
         <thead class="table-head-light-blue">

@@ -3,6 +3,16 @@
   background-color: #99ccff;
 }
 
+.buttons-light-blue {
+  color: white;
+  background-color: #99ccff;
+}
+
+.page-name {
+  color: black;
+  padding: 10px;
+}
+
 .table-stripped {
 }
 
