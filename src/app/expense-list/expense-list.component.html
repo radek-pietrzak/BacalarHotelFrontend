@@ -8,7 +8,7 @@
         </button>
       </li>
       <li class="float-left page-name font-weight-bold">
-        Page:  {{page.number + 1}}
+        Page:  {{(page.number + 1) + '/' + responseExpenses.totalPages}}
       </li>
       <li class="float-left">
         <button type="button" class="btn-floating waves-light buttons-light-blue" (click)="nextPage()">
@@ -38,7 +38,7 @@
       </li>
     </ul>
     <br>
-    <form [formGroup]="expenseAddForm" (ngSubmit)="addExpense()">
+    <form [formGroup]="expenseEditForm" (ngSubmit)="addExpense()">
       <table class="table table-stripped">
         <thead class="table-head-light-blue">
         <tr>
@@ -50,20 +50,15 @@
           <th scope="col">Category</th>
           <th scope="col">Pay Method</th>
           <th scope="col">Pay Date</th>
-
-          <!--          <th scope="col">Created by</th>-->
-          <!--          <th scope="col">Updated by</th>-->
-          <!--          <th scope="col">Create date</th>-->
-          <!--          <th scope="col">Update date</th>-->
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <th scope="col">
+        <tr *ngIf="!edit">
+          <td scope="col">
             <button type="submit" class="btn-floating waves-light table-head-light-blue">
               <i class="material-icons">add</i>
             </button>
-          </th>
+          </td>
           <th scope="col">
             <input type="text" class="form-control" formControlName="user" name="user" id="user">
           </th>
@@ -88,8 +83,15 @@
             <input type="date" class="form-control" formControlName="payDate" name="payDate" id="payDate">
           </th>
         </tr>
-        <tr *ngFor="let expense of responseExpenses.expenses" class="table-stripped">
+        <tr *ngIf="edit">
           <td>
+            <button type="button" class="btn-floating waves-light table-head-light-blue">
+              <i class="material-icons"></i>
+            </button>
+          </td>
+        </tr>
+        <tr *ngFor="let expense of responseExpenses.expenses" class="table-stripped">
+          <td *ngIf="!edit || edit && expense.id != expenseId">
             <button type="button" class="btn-floating waves-light buttons-light-red"
                     (click)="deleteExpense(expense.id)">
               <i class="material-icons">remove</i>
@@ -98,21 +100,46 @@
                     [routerLink]="['/expense-details/', expense.id]">
               <i class="material-icons">visibility</i>
             </button>
-            <button type="button" class="btn-floating waves-light buttons-light-blue">
+            <button type="button" class="btn-floating waves-light buttons-light-blue" (click)="setEditOn(expense.id)">
               <i class="material-icons">edit</i>
             </button>
           </td>
-          <td>{{ expense.user }}</td>
-          <td>{{ expense.amount }}</td>
-          <td>{{ expense.currency }}</td>
-          <td>{{ expense.description }}</td>
-          <td>{{ expense.expenseCategory.categoryName }}</td>
-          <td>{{ expense.payMethod.payMethodName }}</td>
-          <td>{{ expense.payDate }}</td>
-          <!--          <td>{{ expense.createdUser }}</td>-->
-          <!--          <td>{{ expense.updatedUser }}</td>-->
-          <!--          <td>{{ expense.createdDate }}</td>-->
-          <!--          <td>{{ expense.updatedDate }}</td>-->
+          <td *ngIf="edit && expense.id == expenseId">
+            <button type="button" class="btn-floating waves-light buttons-light-red" (click)="setEditOff()" (keyup.escape)="setEditOff()">
+              <i class="material-icons">clear</i>
+            </button>
+            <button type="button" class="btn-floating waves-light buttons-light-blue" (click)="setEditOffWithUpdate()" (keyup.enter)="setEditOffWithUpdate()">
+              <i class="material-icons">done</i>
+            </button>
+          </td>
+          <td *ngIf="!edit || edit && expense.id != expenseId">{{ expense.user }}</td>
+          <td *ngIf="edit && expense.id == expenseId">
+            <input type="text" class="form-control" formControlName="user" name="user" id="userEdit">
+          </td>
+          <td *ngIf="!edit || edit && expense.id != expenseId">{{ expense.amount }}</td>
+          <td *ngIf="edit && expense.id == expenseId">
+            <input type="text" class="form-control" formControlName="amount" name="amount" id="amountEdit">
+          </td>
+          <td *ngIf="!edit || edit && expense.id != expenseId">{{ expense.currency }}</td>
+          <td *ngIf="edit && expense.id == expenseId">
+            <input type="text" class="form-control" formControlName="currency" name="currency" id="currencyEdit">
+          </td>
+          <td *ngIf="!edit || edit && expense.id != expenseId">{{ expense.description }}</td>
+          <td *ngIf="edit && expense.id == expenseId">
+            <input type="text" class="form-control" formControlName="description" name="description" id="descriptionEdit">
+          </td>
+          <td *ngIf="!edit || edit && expense.id != expenseId">{{ expense.expenseCategory.categoryName }}</td>
+          <td *ngIf="edit && expense.id == expenseId">
+            <input type="text" class="form-control" formControlName="categoryName" name="categoryName" id="categoryEdit">
+          </td>
+          <td *ngIf="!edit || edit && expense.id != expenseId">{{ expense.payMethod.payMethodName }}</td>
+          <td *ngIf="edit && expense.id == expenseId">
+            <input type="text" class="form-control" formControlName="payMethodName" name="payMethodName" id="payMethodEdit">
+          </td>
+          <td *ngIf="!edit || edit && expense.id != expenseId">{{ expense.payDate }}</td>
+          <td *ngIf="edit && expense.id == expenseId">
+            <input type="text" class="form-control" formControlName="payDate" name="payDate" id="payDateEdit">
+          </td>
         </tr>
         </tbody>
       </table>

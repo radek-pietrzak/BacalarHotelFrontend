@@ -19,6 +19,9 @@ import {DatePipe} from '@angular/common';
 })
 export class ExpenseListComponent implements OnInit {
   private id: string;
+  expenseId: number;
+  expense: Expense;
+  totalPages: number;
 
   constructor(private datePipe: DatePipe, private expenseService: ExpenseService) {
     this.datePipeString = datePipe.transform(Date.now(), 'yyyy-MM-dd');
@@ -27,7 +30,7 @@ export class ExpenseListComponent implements OnInit {
   datePipeString: string;
 
   expenses: Expense[] = [];
-  expenseAddForm: FormGroup;
+  expenseEditForm: FormGroup;
 
   responseExpenses: ResponseExpenses = {
     page: 0,
@@ -63,32 +66,26 @@ export class ExpenseListComponent implements OnInit {
     searchSortCriteria: this.searchSortCriteria,
     searchSpecCriteria: this.searchSpecCriteria
   };
+  edit = false;
 
 
   ngOnInit(): void {
     this.expenseService.findAllPost(this.criteriaRequest)
       .subscribe(response => this.responseExpenses = response);
 
-    this.expenseAddForm = new FormGroup({
-      user: new FormControl('Radek', Validators.required),
-      amount: new FormControl('0', Validators.required),
-      currency: new FormControl('PLN', Validators.required),
-      description: new FormControl('Some description', Validators.required),
-      payDate: new FormControl(this.datePipeString, Validators.required),
-      payMethodName: new FormControl('Credit card', Validators.required),
-      categoryName: new FormControl('Some category', Validators.required),
-    });
+    this.expenseAddFormGroup();
+
   }
 
   addExpense(): void {
     const expenseModification: ExpenseModification = {
-      user: this.expenseAddForm.value.user,
-      amount: this.expenseAddForm.value.amount,
-      currency: this.expenseAddForm.value.currency,
-      description: this.expenseAddForm.value.description,
-      payDate: this.expenseAddForm.value.payDate,
-      payMethodName: this.expenseAddForm.value.payMethodName,
-      categoryName: this.expenseAddForm.value.categoryName,
+      user: this.expenseEditForm.value.user,
+      amount: this.expenseEditForm.value.amount,
+      currency: this.expenseEditForm.value.currency,
+      description: this.expenseEditForm.value.description,
+      payDate: this.expenseEditForm.value.payDate,
+      payMethodName: this.expenseEditForm.value.payMethodName,
+      categoryName: this.expenseEditForm.value.categoryName,
     };
 
     const expenseRequest: ExpenseRequest = {
@@ -99,7 +96,32 @@ export class ExpenseListComponent implements OnInit {
       this.expenseService
         .editExpense(expenseRequest)
         .subscribe(() => {
-          window.location.reload();
+          this.ngOnInit();
+        });
+    }
+  }
+
+  updateExpense(): void {
+    const expenseModification: ExpenseModification = {
+      id: this.expenseId.toString(),
+      user: this.expenseEditForm.value.user,
+      amount: this.expenseEditForm.value.amount,
+      currency: this.expenseEditForm.value.currency,
+      description: this.expenseEditForm.value.description,
+      payDate: this.expenseEditForm.value.payDate,
+      payMethodName: this.expenseEditForm.value.payMethodName,
+      categoryName: this.expenseEditForm.value.categoryName,
+    };
+
+    const expenseRequest: ExpenseRequest = {
+      expense: expenseModification
+    };
+
+    if (confirm('Are you sure to update this expense?')) {
+      this.expenseService
+        .editExpense(expenseRequest)
+        .subscribe(() => {
+          this.ngOnInit();
         });
     }
   }
@@ -144,7 +166,7 @@ export class ExpenseListComponent implements OnInit {
   deleteExpense(id: number): void {
     if (confirm('Are you sure to delete this expense?')) {
       this.expenseService.deleteExpense(id.toString()).subscribe();
-      window.location.reload();
+      this.ngOnInit();
     }
   }
 
@@ -156,6 +178,54 @@ export class ExpenseListComponent implements OnInit {
 
   public getId(): string {
     return this.id;
+  }
+
+  setEditOn(id: number): void {
+    this.expenseId = id;
+    this.expenseService.getExpense(id.toString()).subscribe(response => this.expense = response);
+
+    setTimeout(() => this.expenseUpdateFormGroup(), 50);
+    this.edit = true;
+
+  }
+
+  setEditOff(): void {
+    setTimeout(() => this.expenseAddFormGroup(), 50);
+    this.edit = false;
+    this.ngOnInit();
+
+  }
+
+  setEditOffWithUpdate(): void {
+    this.updateExpense();
+    setTimeout(() => this.expenseAddFormGroup(), 50);
+    this.edit = false;
+    this.ngOnInit();
+
+  }
+
+  expenseUpdateFormGroup(): void {
+    this.expenseEditForm = new FormGroup({
+      user: new FormControl(this.expense.user, Validators.required),
+      amount: new FormControl(this.expense.amount, Validators.required),
+      currency: new FormControl(this.expense.currency, Validators.required),
+      description: new FormControl(this.expense.description, Validators.required),
+      payDate: new FormControl(this.expense.payDate, Validators.required),
+      payMethodName: new FormControl(this.expense.payMethod.payMethodName, Validators.required),
+      categoryName: new FormControl(this.expense.expenseCategory.categoryName, Validators.required),
+    });
+  }
+
+  expenseAddFormGroup(): void {
+    this.expenseEditForm = new FormGroup({
+      user: new FormControl('Radek', Validators.required),
+      amount: new FormControl('0', Validators.required),
+      currency: new FormControl('PLN', Validators.required),
+      description: new FormControl('Some description', Validators.required),
+      payDate: new FormControl(this.datePipeString, Validators.required),
+      payMethodName: new FormControl('Credit card', Validators.required),
+      categoryName: new FormControl('Some category', Validators.required),
+    });
   }
 
 }

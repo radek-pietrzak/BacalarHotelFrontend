@@ -21,7 +21,6 @@ export class ExpenseDetailsComponent implements OnInit {
   id: string;
   datePipeString: string;
   expenseAddForm: FormGroup;
-  expenseForm: FormGroupName;
   expense: Expense = {};
   user: string;
   edit = false;
@@ -35,7 +34,6 @@ export class ExpenseDetailsComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.expenseService.getExpense(this.id).subscribe(expense => {
       this.expense = expense;
-      this.user = expense.user;
     });
 
   }
@@ -60,7 +58,7 @@ export class ExpenseDetailsComponent implements OnInit {
       this.expenseService
         .editExpense(expenseRequest)
         .subscribe(() => {
-          window.location.reload();
+          this.ngOnInit();
         });
     }
   }
@@ -69,7 +67,7 @@ export class ExpenseDetailsComponent implements OnInit {
   deleteExpense(id: number): void {
     if (confirm('Are you sure to delete this expense?')) {
       this.expenseService.deleteExpense(id.toString()).subscribe();
-      window.location.reload();
+      this.ngOnInit();
     }
   }
 
@@ -88,7 +86,7 @@ export class ExpenseDetailsComponent implements OnInit {
 
   discardChanges(): void {
     if (confirm('Are you sure to discard changes?')) {
-      window.location.reload();
+      this.ngOnInit();
     }
   }
 }
