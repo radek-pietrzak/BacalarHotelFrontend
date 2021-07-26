@@ -38,11 +38,11 @@
       </li>
     </ul>
     <br>
-    <form [formGroup]="expenseAddForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="expenseAddForm" (ngSubmit)="addExpense()">
       <table class="table table-stripped">
         <thead class="table-head-light-blue">
         <tr>
-          <th scope="col">ID</th>
+          <th scope="col">Action</th>
           <th scope="col">User</th>
           <th scope="col">Amount</th>
           <th scope="col">Currency</th>
@@ -90,8 +90,16 @@
         </tr>
         <tr *ngFor="let expense of responseExpenses.expenses" class="table-stripped">
           <td>
-            <button type="button" class="btn-floating waves-light buttons-light-red" (click)="deleteExpense(expense.id)">
+            <button type="button" class="btn-floating waves-light buttons-light-red"
+                    (click)="deleteExpense(expense.id)">
               <i class="material-icons">remove</i>
+            </button>
+            <button type="button" class="btn-floating waves-light buttons-light-blue"
+                    [routerLink]="['/expense-details/', expense.id]">
+              <i class="material-icons">visibility</i>
+            </button>
+            <button type="button" class="btn-floating waves-light buttons-light-blue">
+              <i class="material-icons">edit</i>
             </button>
           </td>
           <td>{{ expense.user }}</td>

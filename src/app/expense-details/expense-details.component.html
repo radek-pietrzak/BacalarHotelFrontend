@@ -1,0 +1,116 @@
+<h4>Expense Details</h4>
+<div class="card my-5">
+  <div class="card-body">
+    <form [formGroup]="expenseAddForm" (ngSubmit)="updateExpense()">
+      <ul>
+        <li class="float-left">
+          <button type="button" class="btn-floating waves-light buttons-light-blue" [routerLink]="['/expense-list/']">
+            <i class="material-icons">arrow_back_ios_new</i>
+          </button>
+        </li>
+        <li class="float-left">
+          <button type="button" class="btn-floating waves-light buttons-light-blue" *ngIf="!edit" (click)="setEditOn()">
+            <i class="material-icons">edit</i>
+          </button>
+        </li>
+        <li class="float-left">
+          <button type="submit" class="btn-floating waves-light buttons-light-blue" *ngIf="edit">
+            <i class="material-icons">done</i>
+          </button>
+        </li>
+        <li class="float-left">
+          <button type="button" class="btn-floating waves-light buttons-light-red" *ngIf="edit" (click)="discardChanges()">
+            <i class="material-icons">clear</i>
+          </button>
+        </li>
+      </ul>
+      <table class="table table-stripped">
+        <thead class="table-head-light-blue">
+        <tr>
+          <th>Name</th>
+          <th *ngIf="!edit">Value</th>
+          <th *ngIf="edit">Edit Value</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="table-stripped">
+          <th scope="col">Id</th>
+          <th scope="col" *ngIf="!edit">{{expense.id}}</th>
+          <th scope="col" *ngIf="edit">{{expense.id}}</th>
+        </tr>
+        <tr class="table-stripped">
+          <th scope="col">User</th>
+          <th scope="col" *ngIf="!edit">{{expense.user}}</th>
+          <th scope="col" *ngIf="edit">
+            <input type="text" class="form-control" formControlName="user" name="user" id="user" value="{{expense.user}}">
+          </th>
+        </tr>
+        <tr class="table-stripped">
+          <th scope="col">Amount</th>
+          <th scope="col" *ngIf="!edit">{{expense.amount}}</th>
+          <th scope="col" *ngIf="edit">
+            <input type="text" class="form-control" formControlName="amount" name="amount" id="amount" value="{{expense.amount}}">
+          </th>
+        </tr>
+        <tr class="table-stripped">
+          <th scope="col">Currency</th>
+          <th scope="col" *ngIf="!edit">{{expense.currency}}</th>
+          <th scope="col" *ngIf="edit">
+            <input type="text" class="form-control" formControlName="currency" name="currency" id="currency">
+          </th>
+        </tr>
+        <tr class="table-stripped">
+          <th scope="col">Description</th>
+          <th scope="col" *ngIf="!edit">{{expense.description}}</th>
+          <th scope="col" *ngIf="edit">
+            <input type="text" class="form-control" formControlName="description" name="description" id="description">
+          </th>
+        </tr>
+        <tr class="table-stripped">
+          <th scope="col">Category</th>
+          <th scope="col" *ngIf="!edit">{{expense.expenseCategory?.categoryName}}</th>
+          <th scope="col" *ngIf="edit">
+            <input type="text" class="form-control" formControlName="categoryName" name="categoryName"
+                   id="categoryName">
+          </th>
+        </tr>
+        <tr class="table-stripped">
+          <th scope="col">Pay Method</th>
+          <th scope="col" *ngIf="!edit">{{expense.payMethod?.payMethodName}}</th>
+          <th scope="col" *ngIf="edit">
+            <input type="text" class="form-control" formControlName="payMethodName" name="payMethodName"
+                   id="payMethodName">
+          </th>
+        </tr>
+        <tr class="table-stripped">
+          <th scope="col">Pay Date</th>
+          <th scope="col" *ngIf="!edit">{{expense.payDate}}</th>
+          <th scope="col" *ngIf="edit">
+            <input type="date" class="form-control" formControlName="payDate" name="payDate" id="payDate">
+          </th>
+        </tr>
+        <tr class="table-stripped">
+          <th scope="col">Created by</th>
+          <th scope="col" *ngIf="!edit">{{expense?.createdUser}}</th>
+          <th scope="col" *ngIf="edit">{{expense?.createdUser}}</th>
+        </tr>
+        <tr class="table-stripped">
+          <th scope="col">Updated by</th>
+          <th scope="col" *ngIf="!edit">{{expense?.updatedUser}}</th>
+          <th scope="col" *ngIf="edit">{{expense?.updatedUser}}</th>
+        </tr>
+        <tr class="table-stripped">
+          <th scope="col">Created date</th>
+          <th scope="col" *ngIf="!edit">{{expense?.createdDate}}</th>
+          <th scope="col" *ngIf="edit">{{expense?.createdDate}}</th>
+        <tr class="table-stripped">
+          <th scope="col">Updated date</th>
+          <th scope="col" *ngIf="!edit">{{expense?.updatedDate}}</th>
+          <th scope="col" *ngIf="edit">{{expense?.updatedDate}}</th>
+        </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+

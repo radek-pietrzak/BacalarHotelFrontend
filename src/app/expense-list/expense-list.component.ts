@@ -18,6 +18,7 @@ import {DatePipe} from '@angular/common';
   providers: [ExpenseService, DatePipe]
 })
 export class ExpenseListComponent implements OnInit {
+  private id: string;
 
   constructor(private datePipe: DatePipe, private expenseService: ExpenseService) {
     this.datePipeString = datePipe.transform(Date.now(), 'yyyy-MM-dd');
@@ -79,7 +80,7 @@ export class ExpenseListComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {
+  addExpense(): void {
     const expenseModification: ExpenseModification = {
       user: this.expenseAddForm.value.user,
       amount: this.expenseAddForm.value.amount,
@@ -94,12 +95,13 @@ export class ExpenseListComponent implements OnInit {
       expense: expenseModification
     };
 
-    this.expenseService
-      .addExpense(expenseRequest)
-      .subscribe(() => {
-        alert('Expense added');
-        window.location.reload();
-      });
+    if (confirm('Are you sure to add this expense?')) {
+      this.expenseService
+        .editExpense(expenseRequest)
+        .subscribe(() => {
+          window.location.reload();
+        });
+    }
   }
 
   previousPage(): void {
@@ -145,4 +147,15 @@ export class ExpenseListComponent implements OnInit {
       window.location.reload();
     }
   }
+
+  saveId(id: number): void {
+    let stringId: string;
+    stringId = id.toString();
+    this.id = stringId;
+  }
+
+  public getId(): string {
+    return this.id;
+  }
+
 }

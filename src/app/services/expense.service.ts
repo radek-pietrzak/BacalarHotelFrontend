@@ -26,11 +26,16 @@ export class ExpenseService {
     return this.httpClient.post<ResponseExpenses>(this.url, criteriaRequest, this.httpOptions);
   }
 
-  public addExpense(expenseRequest: ExpenseRequest): Observable<ExpenseRequest> {
+  public editExpense(expenseRequest: ExpenseRequest): Observable<ExpenseRequest> {
     return this.httpClient.put<ExpenseRequest>(this.url, expenseRequest, this.httpOptions);
   }
 
   public deleteExpense(id: string): Observable<string> {
     return this.httpClient.delete<string>(this.url + '/' + id);
   }
+
+  getExpense(id: string): Observable<Expense> {
+    return this.httpClient.get<Expense>(this.url + '/' + id);
+  }
+
 }
