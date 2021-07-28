@@ -22,7 +22,7 @@ export class ExpenseService {
     return this.httpClient.get<Expense[]>(this.url);
   }
 
-  public findAllPost(criteriaRequest: ExpenseCriteriaRequest): Observable<ResponseExpenses> {
+  public getAllPosts(criteriaRequest: ExpenseCriteriaRequest): Observable<ResponseExpenses> {
     return this.httpClient.post<ResponseExpenses>(this.url, criteriaRequest, this.httpOptions);
   }
 
