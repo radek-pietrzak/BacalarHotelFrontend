@@ -20,33 +20,10 @@ import {DatePipe} from '@angular/common';
 export class ExpenseListComponent implements OnInit {
   private id: string;
   expenseId: number;
-  expense: Expense;
-  totalPages: number;
-  sortBtn = 'default';
-  sortBtnDefault = false;
-  private flagDefaultSort = true;
-  private flagUserSortKey = false;
-  private flagUserSortOpASC = false;
-  private flagAmountSortKey = false;
-  private flagAmountSortOpASC = false;
-  private flagCurrencySortKey = false;
-  private flagCurrencySortOpASC = false;
-  private flagDescriptionSortKey = false;
-  private flagDescriptionSortOpASC = false;
-  private flagCategorySortKey = false;
-  private flagCategorySortOpASC = false;
-  private flagPayMethodSortKey = false;
-  private flagPayMethodSortOpASC = false;
-  private flagPayDateSortKey = false;
-  private flagPayDateSortOpASC = false;
-
-  constructor(private datePipe: DatePipe, private expenseService: ExpenseService) {
-    this.datePipeString = datePipe.transform(Date.now(), 'yyyy-MM-dd');
-  }
-
+  private expense: Expense;
   datePipeString: string;
 
-  expenses: Expense[] = [];
+  private expenses: Expense[] = [];
   expenseEditForm: FormGroup;
 
   responseExpenses: ResponseExpenses = {
@@ -62,7 +39,7 @@ export class ExpenseListComponent implements OnInit {
     size: 10
   };
 
-  searchSortCriterion: SearchSortCriterion = {
+  private searchSortCriterion: SearchSortCriterion = {
     key: 'id',
     operation: 'DESC'
   };
@@ -83,13 +60,33 @@ export class ExpenseListComponent implements OnInit {
     searchSortCriteria: this.searchSortCriteria,
     searchSpecCriteria: this.searchSpecCriteria
   };
+
   edit = false;
+
+  private flagDefaultSort = true;
+  private flagUserSortKey = false;
+  private flagUserSortOpASC = false;
+  private flagAmountSortKey = false;
+  private flagAmountSortOpASC = false;
+  private flagCurrencySortKey = false;
+  private flagCurrencySortOpASC = false;
+  private flagDescriptionSortKey = false;
+  private flagDescriptionSortOpASC = false;
+  private flagCategorySortKey = false;
+  private flagCategorySortOpASC = false;
+  private flagPayMethodSortKey = false;
+  private flagPayMethodSortOpASC = false;
+  private flagPayDateSortKey = false;
+  private flagPayDateSortOpASC = false;
+
+
+  constructor(private datePipe: DatePipe, private expenseService: ExpenseService) {
+    this.datePipeString = datePipe.transform(Date.now(), 'yyyy-MM-dd');
+  }
 
 
   ngOnInit(): void {
-    this.expenseService.getAllPosts(this.criteriaRequest)
-      .subscribe(response => this.responseExpenses = response);
-
+    this.getAllPosts();
     this.expenseAddFormGroup();
 
   }
@@ -145,37 +142,32 @@ export class ExpenseListComponent implements OnInit {
     if (this.page.number > 0) {
       this.page.number = this.page.number - 1;
     }
-    this.expenseService.getAllPosts(this.criteriaRequest)
-      .subscribe(response => this.responseExpenses = response);
+    this.getAllPosts();
   }
 
   nextPage(): void {
     if (this.responseExpenses.hasNextPage) {
       this.page.number = this.page.number + 1;
     }
-    this.expenseService.getAllPosts(this.criteriaRequest)
-      .subscribe(response => this.responseExpenses = response);
+    this.getAllPosts();
   }
 
   setPageSize10(): void {
     this.page.size = 10;
     this.page.number = 0;
-    this.expenseService.getAllPosts(this.criteriaRequest)
-      .subscribe(response => this.responseExpenses = response);
+    this.getAllPosts();
   }
 
   setPageSize20(): void {
     this.page.size = 20;
     this.page.number = 0;
-    this.expenseService.getAllPosts(this.criteriaRequest)
-      .subscribe(response => this.responseExpenses = response);
+    this.getAllPosts();
   }
 
   setPageSize50(): void {
     this.page.size = 50;
     this.page.number = 0;
-    this.expenseService.getAllPosts(this.criteriaRequest)
-      .subscribe(response => this.responseExpenses = response);
+    this.getAllPosts();
   }
 
   deleteExpense(id: number): void {
@@ -244,12 +236,16 @@ export class ExpenseListComponent implements OnInit {
     });
   }
 
+  private getAllPosts(): void {
+    this.expenseService.getAllPosts(this.criteriaRequest)
+      .subscribe(response => this.responseExpenses = response);
+  }
+
   setUserSortASC(): void {
     this.searchSortCriterion.key = 'user';
     this.searchSortCriterion.operation = 'ASC';
 
-    this.expenseService.getAllPosts(this.criteriaRequest)
-      .subscribe(response => this.responseExpenses = response);
+    this.getAllPosts();
 
     this.setSpecSortFalse();
     this.flagUserSortKey = true;
@@ -262,8 +258,7 @@ export class ExpenseListComponent implements OnInit {
     this.searchSortCriterion.key = 'user';
     this.searchSortCriterion.operation = 'DESC';
 
-    this.expenseService.getAllPosts(this.criteriaRequest)
-      .subscribe(response => this.responseExpenses = response);
+    this.getAllPosts();
 
     this.setSpecSortFalse();
     this.flagUserSortKey = true;
@@ -275,8 +270,7 @@ export class ExpenseListComponent implements OnInit {
     this.searchSortCriterion.key = 'id';
     this.searchSortCriterion.operation = 'ASC';
 
-    this.expenseService.getAllPosts(this.criteriaRequest)
-      .subscribe(response => this.responseExpenses = response);
+    this.getAllPosts();
 
     this.setSpecSortFalse();
   }
@@ -302,8 +296,7 @@ export class ExpenseListComponent implements OnInit {
     this.searchSortCriterion.key = 'amount';
     this.searchSortCriterion.operation = 'ASC';
 
-    this.expenseService.getAllPosts(this.criteriaRequest)
-      .subscribe(response => this.responseExpenses = response);
+    this.getAllPosts();
 
     this.setSpecSortFalse();
     this.flagAmountSortKey = true;
@@ -315,8 +308,7 @@ export class ExpenseListComponent implements OnInit {
     this.searchSortCriterion.key = 'amount';
     this.searchSortCriterion.operation = 'DESC';
 
-    this.expenseService.getAllPosts(this.criteriaRequest)
-      .subscribe(response => this.responseExpenses = response);
+    this.getAllPosts();
 
     this.setSpecSortFalse();
     this.flagAmountSortKey = true;
@@ -328,8 +320,7 @@ export class ExpenseListComponent implements OnInit {
     this.searchSortCriterion.key = 'currency';
     this.searchSortCriterion.operation = 'ASC';
 
-    this.expenseService.getAllPosts(this.criteriaRequest)
-      .subscribe(response => this.responseExpenses = response);
+    this.getAllPosts();
 
     this.setSpecSortFalse();
     this.flagCurrencySortKey = true;
@@ -341,8 +332,7 @@ export class ExpenseListComponent implements OnInit {
     this.searchSortCriterion.key = 'currency';
     this.searchSortCriterion.operation = 'DESC';
 
-    this.expenseService.getAllPosts(this.criteriaRequest)
-      .subscribe(response => this.responseExpenses = response);
+    this.getAllPosts();
 
     this.setSpecSortFalse();
     this.flagCurrencySortKey = true;
@@ -354,8 +344,7 @@ export class ExpenseListComponent implements OnInit {
     this.searchSortCriterion.key = 'description';
     this.searchSortCriterion.operation = 'ASC';
 
-    this.expenseService.getAllPosts(this.criteriaRequest)
-      .subscribe(response => this.responseExpenses = response);
+    this.getAllPosts();
 
     this.setSpecSortFalse();
     this.flagDescriptionSortKey = true;
@@ -367,8 +356,7 @@ export class ExpenseListComponent implements OnInit {
     this.searchSortCriterion.key = 'description';
     this.searchSortCriterion.operation = 'DESC';
 
-    this.expenseService.getAllPosts(this.criteriaRequest)
-      .subscribe(response => this.responseExpenses = response);
+    this.getAllPosts();
 
     this.setSpecSortFalse();
     this.flagDescriptionSortKey = true;
@@ -380,8 +368,7 @@ export class ExpenseListComponent implements OnInit {
     this.searchSortCriterion.key = 'expenseCategory.categoryName';
     this.searchSortCriterion.operation = 'ASC';
 
-    this.expenseService.getAllPosts(this.criteriaRequest)
-      .subscribe(response => this.responseExpenses = response);
+    this.getAllPosts();
 
     this.setSpecSortFalse();
     this.flagCategorySortKey = true;
@@ -393,8 +380,7 @@ export class ExpenseListComponent implements OnInit {
     this.searchSortCriterion.key = 'expenseCategory.categoryName';
     this.searchSortCriterion.operation = 'DESC';
 
-    this.expenseService.getAllPosts(this.criteriaRequest)
-      .subscribe(response => this.responseExpenses = response);
+    this.getAllPosts();
 
     this.setSpecSortFalse();
     this.flagCategorySortKey = true;
@@ -406,8 +392,7 @@ export class ExpenseListComponent implements OnInit {
     this.searchSortCriterion.key = 'payMethod.payMethodName';
     this.searchSortCriterion.operation = 'ASC';
 
-    this.expenseService.getAllPosts(this.criteriaRequest)
-      .subscribe(response => this.responseExpenses = response);
+    this.getAllPosts();
 
     this.setSpecSortFalse();
     this.flagPayMethodSortKey = true;
@@ -419,8 +404,7 @@ export class ExpenseListComponent implements OnInit {
     this.searchSortCriterion.key = 'payMethod.payMethodName';
     this.searchSortCriterion.operation = 'DESC';
 
-    this.expenseService.getAllPosts(this.criteriaRequest)
-      .subscribe(response => this.responseExpenses = response);
+    this.getAllPosts();
 
     this.setSpecSortFalse();
     this.flagPayMethodSortKey = true;
@@ -432,8 +416,7 @@ export class ExpenseListComponent implements OnInit {
     this.searchSortCriterion.key = 'payDate';
     this.searchSortCriterion.operation = 'ASC';
 
-    this.expenseService.getAllPosts(this.criteriaRequest)
-      .subscribe(response => this.responseExpenses = response);
+    this.getAllPosts();
 
     this.setSpecSortFalse();
     this.flagPayDateSortKey = true;
@@ -442,20 +425,15 @@ export class ExpenseListComponent implements OnInit {
   }
 
   setPayDateSortDESC(): void {
-    this.searchSortCriterion.key = 'payMethod.payMethodName';
+    this.searchSortCriterion.key = 'payDate';
     this.searchSortCriterion.operation = 'DESC';
 
-    this.expenseService.getAllPosts(this.criteriaRequest)
-      .subscribe(response => this.responseExpenses = response);
+    this.getAllPosts();
 
     this.setSpecSortFalse();
     this.flagPayDateSortKey = true;
     this.flagPayDateSortOpASC = false;
     this.flagDefaultSort = false;
-  }
-
-  showBtn(): boolean {
-    return this.sortBtnDefault === true || this.sortBtn !== 'default';
   }
 
   showDefaultSortUserBtn(): boolean {
