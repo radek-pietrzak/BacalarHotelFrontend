@@ -1,5 +1,5 @@
 export class SearchSpecCriterion {
-  key: string;
+  key?: string;
   operation: string;
-  value: string;
+  content: string;
 }
