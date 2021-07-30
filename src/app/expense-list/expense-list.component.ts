@@ -140,21 +140,21 @@ export class ExpenseListComponent implements OnInit {
   }
 
   searchNewCriteria(): void {
-    const searchSpecCriterion: SearchSpecCriterion = {
+    this.searchSpecCriterion = {
       key: null,
       operation: 'CONTAINS',
       content: this.searchForm.value.content
     };
 
-    const  searchNewSpecCriteria: SearchSpecCriterion [] = [searchSpecCriterion];
+    this.searchSpecCriteria = [this.searchSpecCriterion];
 
-    const criteriaRequest: ExpenseCriteriaRequest = {
+    this.criteriaRequest = {
       page: this.page,
       searchSortCriteria: this.searchSortCriteria,
-      searchSpecCriteria: searchNewSpecCriteria
+      searchSpecCriteria: this.searchSpecCriteria
     };
 
-    this.expenseService.getAllExpenses(criteriaRequest)
+    this.expenseService.getAllExpenses(this.criteriaRequest)
       .subscribe(response => this.responseExpenses = response);
   }
 
@@ -270,6 +270,23 @@ export class ExpenseListComponent implements OnInit {
       .subscribe(response => this.responseExpenses = response);
   }
 
+  setSpecSortFalse(): void {
+    this.flagUserSortKey = false;
+    this.flagUserSortOpASC = false;
+    this.flagAmountSortKey = false;
+    this.flagAmountSortOpASC = false;
+    this.flagCurrencySortKey = false;
+    this.flagCurrencySortOpASC = false;
+    this.flagDescriptionSortKey = false;
+    this.flagDescriptionSortOpASC = false;
+    this.flagCategorySortKey = false;
+    this.flagCategorySortOpASC = false;
+    this.flagPayMethodSortKey = false;
+    this.flagPayMethodSortOpASC = false;
+    this.flagPayDateSortKey = false;
+    this.flagPayDateSortOpASC = false;
+  }
+
   setUserSortASC(): void {
     this.searchSortCriterion.key = 'user';
     this.searchSortCriterion.operation = 'ASC';
@@ -302,23 +319,6 @@ export class ExpenseListComponent implements OnInit {
     this.getAllExpenses();
 
     this.setSpecSortFalse();
-  }
-
-  setSpecSortFalse(): void {
-    this.flagUserSortKey = false;
-    this.flagUserSortOpASC = false;
-    this.flagAmountSortKey = false;
-    this.flagAmountSortOpASC = false;
-    this.flagCurrencySortKey = false;
-    this.flagCurrencySortOpASC = false;
-    this.flagDescriptionSortKey = false;
-    this.flagDescriptionSortOpASC = false;
-    this.flagCategorySortKey = false;
-    this.flagCategorySortOpASC = false;
-    this.flagPayMethodSortKey = false;
-    this.flagPayMethodSortOpASC = false;
-    this.flagPayDateSortKey = false;
-    this.flagPayDateSortOpASC = false;
   }
 
   setAmountSortASC(): void {
