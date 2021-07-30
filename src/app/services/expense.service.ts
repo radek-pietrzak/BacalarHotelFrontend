@@ -26,8 +26,8 @@ export class ExpenseService {
     return this.httpClient.post<ResponseExpenses>(this.url, criteriaRequest, this.httpOptions);
   }
 
-  public editExpense(expenseRequest: ExpenseRequest): Observable<ExpenseRequest> {
-    return this.httpClient.put<ExpenseRequest>(this.url, expenseRequest, this.httpOptions);
+  public editExpense(expenseRequest: ExpenseRequest): Observable<Expense> {
+    return this.httpClient.put<Expense>(this.url, expenseRequest, this.httpOptions);
   }
 
   public deleteExpense(id: string): Observable<string> {

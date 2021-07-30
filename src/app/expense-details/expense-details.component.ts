@@ -40,14 +40,14 @@ export class ExpenseDetailsComponent implements OnInit {
 
   updateExpense(): void {
     const expenseModification: ExpenseModification = {
-      id: this.expense.id.toString(),
+      id: this.expense.id,
       user: this.expenseAddForm.value.user,
       amount: this.expenseAddForm.value.amount,
       currency: this.expenseAddForm.value.currency,
       description: this.expenseAddForm.value.description,
       payDate: this.expenseAddForm.value.payDate,
-      payMethodName: this.expenseAddForm.value.payMethodName,
-      categoryName: this.expenseAddForm.value.categoryName,
+      payMethod: this.expenseAddForm.value.payMethod,
+      expenseCategory: this.expenseAddForm.value.expenseCategory,
     };
 
     const expenseRequest: ExpenseRequest = {
@@ -64,9 +64,9 @@ export class ExpenseDetailsComponent implements OnInit {
   }
 
 
-  deleteExpense(id: number): void {
+  deleteExpense(id: string): void {
     if (confirm('Are you sure to delete this expense?')) {
-      this.expenseService.deleteExpense(id.toString()).subscribe();
+      this.expenseService.deleteExpense(id).subscribe();
       this.ngOnInit();
     }
   }
@@ -78,8 +78,8 @@ export class ExpenseDetailsComponent implements OnInit {
       currency: new FormControl(this.expense.currency, Validators.required),
       description: new FormControl(this.expense.description, Validators.required),
       payDate: new FormControl(this.expense.payDate, Validators.required),
-      payMethodName: new FormControl(this.expense.payMethod.payMethodName, Validators.required),
-      categoryName: new FormControl(this.expense.expenseCategory.categoryName, Validators.required),
+      payMethod: new FormControl(this.expense.payMethod, Validators.required),
+      expenseCategory: new FormControl(this.expense.expenseCategory, Validators.required),
     });
     this.edit = true;
   }

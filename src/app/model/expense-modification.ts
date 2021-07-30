@@ -5,6 +5,6 @@ export class ExpenseModification {
   currency?: string;
   description?: string;
   payDate?: string;
-  payMethodName?: string;
-  categoryName?: string;
+  payMethod?: string;
+  expenseCategory?: string;
 }

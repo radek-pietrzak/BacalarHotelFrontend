@@ -68,18 +68,18 @@
         </tr>
         <tr class="table-stripped">
           <th scope="col">Category</th>
-          <th scope="col" *ngIf="!edit">{{expense.expenseCategory?.categoryName}}</th>
+          <th scope="col" *ngIf="!edit">{{expense?.expenseCategory}}</th>
           <th scope="col" *ngIf="edit">
-            <input type="text" class="form-control" formControlName="categoryName" name="categoryName"
-                   id="categoryName">
+            <input type="text" class="form-control" formControlName="expenseCategory" name="expenseCategory"
+                   id="expenseCategory" value="{{expense.expenseCategory}}">
           </th>
         </tr>
         <tr class="table-stripped">
           <th scope="col">Pay Method</th>
-          <th scope="col" *ngIf="!edit">{{expense.payMethod?.payMethodName}}</th>
+          <th scope="col" *ngIf="!edit">{{expense?.payMethod}}</th>
           <th scope="col" *ngIf="edit">
-            <input type="text" class="form-control" formControlName="payMethodName" name="payMethodName"
-                   id="payMethodName">
+            <input type="text" class="form-control" formControlName="payMethod" name="payMethod"
+                   id="payMethod" value="{{expense.payMethod}}">
           </th>
         </tr>
         <tr class="table-stripped">

@@ -195,12 +195,12 @@
             <input type="text" class="form-control" formControlName="description" name="description" id="description">
           </th>
           <th scope="col">
-            <input type="text" class="form-control" formControlName="categoryName" name="categoryName"
-                   id="categoryName">
+            <input type="text" class="form-control" formControlName="expenseCategory" name="expenseCategory"
+                   id="expenseCategory">
           </th>
           <th scope="col">
-            <input type="text" class="form-control" formControlName="payMethodName" name="payMethodName"
-                   id="payMethodName">
+            <input type="text" class="form-control" formControlName="payMethod" name="payMethod"
+                   id="payMethod">
           </th>
           <th scope="col">
             <input type="date" class="form-control" formControlName="payDate" name="payDate" id="payDate">
@@ -254,14 +254,14 @@
             <input type="text" class="form-control" formControlName="description" name="description"
                    id="descriptionEdit">
           </td>
-          <td *ngIf="!edit || edit && expense.id != expenseId">{{ expense.expenseCategory.categoryName }}</td>
+          <td *ngIf="!edit || edit && expense.id != expenseId">{{ expense.expenseCategory }}</td>
           <td *ngIf="edit && expense.id == expenseId">
-            <input type="text" class="form-control" formControlName="categoryName" name="categoryName"
-                   id="categoryEdit">
+            <input type="text" class="form-control" formControlName="expenseCategory" name="expenseCategory"
+                   id="expenseCategoryEdit">
           </td>
-          <td *ngIf="!edit || edit && expense.id != expenseId">{{ expense.payMethod.payMethodName }}</td>
+          <td *ngIf="!edit || edit && expense.id != expenseId">{{ expense.payMethod }}</td>
           <td *ngIf="edit && expense.id == expenseId">
-            <input type="text" class="form-control" formControlName="payMethodName" name="payMethodName"
+            <input type="text" class="form-control" formControlName="payMethod" name="payMethod"
                    id="payMethodEdit">
           </td>
           <td *ngIf="!edit || edit && expense.id != expenseId">{{ expense.payDate }}</td>

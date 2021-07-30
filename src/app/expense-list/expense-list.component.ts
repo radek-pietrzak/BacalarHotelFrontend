@@ -10,7 +10,6 @@ import {ExpenseModification} from '../model/expense-modification';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ExpenseRequest} from '../model/expense-request';
 import {DatePipe} from '@angular/common';
-import {SearchSortCriteria} from '../model/search-sort-criteria';
 
 @Component({
   selector: 'app-expense-post',
@@ -20,7 +19,7 @@ import {SearchSortCriteria} from '../model/search-sort-criteria';
 })
 export class ExpenseListComponent implements OnInit {
   private id: string;
-  expenseId: number;
+  expenseId: string;
   private expense: Expense;
   datePipeString: string;
 
@@ -100,8 +99,8 @@ export class ExpenseListComponent implements OnInit {
       currency: this.expenseEditForm.value.currency,
       description: this.expenseEditForm.value.description,
       payDate: this.expenseEditForm.value.payDate,
-      payMethodName: this.expenseEditForm.value.payMethodName,
-      categoryName: this.expenseEditForm.value.categoryName,
+      payMethod: this.expenseEditForm.value.payMethod,
+      expenseCategory: this.expenseEditForm.value.expenseCategory,
     };
 
     const expenseRequest: ExpenseRequest = {
@@ -119,14 +118,14 @@ export class ExpenseListComponent implements OnInit {
 
   updateExpense(): void {
     const expenseModification: ExpenseModification = {
-      id: this.expenseId.toString(),
+      id: this.expenseId,
       user: this.expenseEditForm.value.user,
       amount: this.expenseEditForm.value.amount,
       currency: this.expenseEditForm.value.currency,
       description: this.expenseEditForm.value.description,
       payDate: this.expenseEditForm.value.payDate,
-      payMethodName: this.expenseEditForm.value.payMethodName,
-      categoryName: this.expenseEditForm.value.categoryName,
+      payMethod: this.expenseEditForm.value.payMethod,
+      expenseCategory: this.expenseEditForm.value.expenseCategory,
     };
 
     const expenseRequest: ExpenseRequest = {
@@ -191,9 +190,9 @@ export class ExpenseListComponent implements OnInit {
     this.getAllExpenses();
   }
 
-  deleteExpense(id: number): void {
+  deleteExpense(id: string): void {
     if (confirm('Are you sure to delete this expense?')) {
-      this.expenseService.deleteExpense(id.toString()).subscribe();
+      this.expenseService.deleteExpense(id).subscribe();
       window.location.reload();
       this.ngOnInit();
     }
@@ -209,25 +208,26 @@ export class ExpenseListComponent implements OnInit {
     return this.id;
   }
 
-  setEditOn(id: number): void {
+  setEditOn(id: string): void {
     this.expenseId = id;
-    this.expenseService.getExpense(id.toString()).subscribe(response => this.expense = response);
+    this.expenseService.getExpense(id).subscribe(response => this.expense = response);
 
-    setTimeout(() => this.expenseUpdateFormGroup(), 50);
+    setTimeout(() => this.expenseUpdateFormGroup(), 1000);
+
     this.edit = true;
 
   }
 
   setEditOff(): void {
-    setTimeout(() => this.expenseAddFormGroup(), 50);
+    setTimeout(() => this.expenseAddFormGroup(), 1000);
     this.edit = false;
-    this.ngOnInit();
+    window.location.reload();
 
   }
 
   setEditOffWithUpdate(): void {
     this.updateExpense();
-    setTimeout(() => this.expenseAddFormGroup(), 50);
+    setTimeout(() => this.expenseAddFormGroup(), 1000);
     this.edit = false;
     this.ngOnInit();
 
@@ -240,8 +240,8 @@ export class ExpenseListComponent implements OnInit {
       currency: new FormControl(this.expense.currency, Validators.required),
       description: new FormControl(this.expense.description, Validators.required),
       payDate: new FormControl(this.expense.payDate, Validators.required),
-      payMethodName: new FormControl(this.expense.payMethod.payMethodName, Validators.required),
-      categoryName: new FormControl(this.expense.expenseCategory.categoryName, Validators.required),
+      payMethod: new FormControl(this.expense.payMethod, Validators.required),
+      expenseCategory: new FormControl(this.expense.expenseCategory, Validators.required),
     });
   }
 
@@ -252,8 +252,8 @@ export class ExpenseListComponent implements OnInit {
       currency: new FormControl('PLN', Validators.required),
       description: new FormControl('Some description', Validators.required),
       payDate: new FormControl(this.datePipeString, Validators.required),
-      payMethodName: new FormControl('Credit card', Validators.required),
-      categoryName: new FormControl('Some category', Validators.required),
+      payMethod: new FormControl('Credit card', Validators.required),
+      expenseCategory: new FormControl('Some category', Validators.required),
     });
   }
 
@@ -394,7 +394,7 @@ export class ExpenseListComponent implements OnInit {
   }
 
   setCategorySortASC(): void {
-    this.searchSortCriterion.key = 'expenseCategory.categoryName';
+    this.searchSortCriterion.key = 'expenseCategory';
     this.searchSortCriterion.operation = 'ASC';
 
     this.getAllExpenses();
@@ -406,7 +406,7 @@ export class ExpenseListComponent implements OnInit {
   }
 
   setCategorySortDESC(): void {
-    this.searchSortCriterion.key = 'expenseCategory.categoryName';
+    this.searchSortCriterion.key = 'expenseCategory';
     this.searchSortCriterion.operation = 'DESC';
 
     this.getAllExpenses();
@@ -418,7 +418,7 @@ export class ExpenseListComponent implements OnInit {
   }
 
   setPayMethodSortASC(): void {
-    this.searchSortCriterion.key = 'payMethod.payMethodName';
+    this.searchSortCriterion.key = 'payMethod';
     this.searchSortCriterion.operation = 'ASC';
 
     this.getAllExpenses();
@@ -430,7 +430,7 @@ export class ExpenseListComponent implements OnInit {
   }
 
   setPayMethodSortDESC(): void {
-    this.searchSortCriterion.key = 'payMethod.payMethodName';
+    this.searchSortCriterion.key = 'payMethod';
     this.searchSortCriterion.operation = 'DESC';
 
     this.getAllExpenses();

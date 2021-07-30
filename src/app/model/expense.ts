@@ -1,29 +1,25 @@
-import {PayMethod} from './pay-method';
-import {ExpenseCategory} from './expense-category';
-
 export class Expense {
-  id?: number;
+  id?: string;
   user?: string;
-  amount?: number;
+  amount?: string;
   currency?: string;
   description?: string;
   payDate?: string;
-  payMethod?: PayMethod;
-  expenseCategory?: ExpenseCategory;
+  payMethod?: string;
+  expenseCategory?: string;
   createdUser?: string;
   updatedUser?: string;
   createdDate?: string;
   updatedDate?: string;
 
 
-  constructor(
-    user: string,
-    amount: number,
-    currency: string,
-    description: string,
-    payDate: string,
-    payMethod: PayMethod,
-    expenseCategory: ExpenseCategory) {
+  constructor(user: string,
+              amount: string,
+              currency: string,
+              description: string,
+              payDate: string,
+              payMethod: string,
+              expenseCategory: string) {
     this.user = user;
     this.amount = amount;
     this.currency = currency;
@@ -32,4 +28,21 @@ export class Expense {
     this.payMethod = payMethod;
     this.expenseCategory = expenseCategory;
   }
+
+// constructor(
+  //   user: string,
+  //   amount: string,
+  //   currency: string,
+  //   description: string,
+  //   payDate: string,
+  //   payMethod: string,
+  //   expenseCategory: string) {
+  //   this.user = user;
+  //   this.amount = amount;
+  //   this.currency = currency;
+  //   this.description = description;
+  //   this.payDate = payDate;
+  //   this.payMethod = payMethod;
+  //   this.expenseCategory = expenseCategory;
+  // }
 }
