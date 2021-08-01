@@ -1,62 +1,64 @@
 <h5>Expense list</h5>
 <div class="card my-5">
   <div class="card-body">
-        <form [formGroup]="searchForm" (ngSubmit)="searchNewCriteria()">
-      <ul>
-        <li class="float-left">
-          <button type="button" class="btn-floating waves-light buttons-light-blue" (click)="previousPage()">
-            <i class="material-icons">arrow_back</i>
-          </button>
-        </li>
-        <li class="float-left page-name font-weight-bold">
-          Page:  {{ getPageNumber() + '/' + responseExpenses.totalPages}}
-        </li>
-        <li class="float-left">
-          <button type="button" class="btn-floating waves-light buttons-light-blue" (click)="nextPage()">
-            <i class="material-icons">arrow_forward</i>
-          </button>
-        </li>
-        <li class="float-left page-name font-weight-bold">
-          Page Size:
-        </li>
-        <li class="float-left">
-          <button type="button" class="btn-floating waves-light buttons-light-blue font-weight-bold"
-                  (click)="setPageSize10()">
-            10
-          </button>
-        </li>
-        <li class="float-left">
-          &nbsp;
-        </li>
-        <li class="float-left">
-          <button type="button" class="btn-floating waves-light buttons-light-blue font-weight-bold"
-                  (click)="setPageSize20()">
-            20
-          </button>
-        </li>
-        <li class="float-left">
-          &nbsp;
-        </li>
-        <li class="float-left">
-          <button type="button" class="btn-floating waves-light buttons-light-blue font-weight-bold"
-                  (click)="setPageSize50()">
-            50
-          </button>
-        </li>
-        <li class="float-right">
-          <input type="text" class="form-control float-right" formControlName="content" name="content" id="content"
-                 placeholder="Search">
-        </li>
-        <li class="float-right">
-          &nbsp;
-        </li>
-        <li class="float-right">
-          <button type="submit" class="btn-floating waves-light buttons-light-blue font-weight-bold">
-            <i class="material-icons">search</i>
-          </button>
-        </li>
-      </ul>
-    </form>
+    <ul class="float-left">
+      <li class="float-left">
+        <button type="button" class="btn-floating waves-light buttons-light-blue" (click)="previousPage()">
+          <i class="material-icons">arrow_back</i>
+        </button>
+      </li>
+      <li class="float-left page-name font-weight-bold">
+        Page:  {{ getPageNumber() + '/' + responseExpenses.totalPages}}
+      </li>
+      <li class="float-left">
+        <button type="button" class="btn-floating waves-light buttons-light-blue" (click)="nextPage()">
+          <i class="material-icons">arrow_forward</i>
+        </button>
+      </li>
+      <li class="float-left page-name font-weight-bold">
+        Page Size:
+      </li>
+      <li class="float-left">
+        <button type="button" class="btn-floating waves-light buttons-light-blue font-weight-bold"
+                (click)="setPageSize10()">
+          10
+        </button>
+      </li>
+      <li class="float-left">
+        &nbsp;
+      </li>
+      <li class="float-left">
+        <button type="button" class="btn-floating waves-light buttons-light-blue font-weight-bold"
+                (click)="setPageSize20()">
+          20
+        </button>
+      </li>
+      <li class="float-left">
+        &nbsp;
+      </li>
+      <li class="float-left">
+        <button type="button" class="btn-floating waves-light buttons-light-blue font-weight-bold"
+                (click)="setPageSize50()">
+          50
+        </button>
+      </li>
+    </ul>
+      <form [formGroup]="searchForm()" (ngSubmit)="searchNewCriteria()">
+        <ul class="float-right">
+          <li class="float-left">
+            <button type="submit" class="btn-floating waves-light buttons-light-blue font-weight-bold">
+              <i class="material-icons">search</i>
+            </button>
+          </li>
+          <li class="float-left">
+            &nbsp;
+          </li>
+          <li class="float-left">
+            <input type="text" class="form-control float-right" formControlName="content" name="content" id="content"
+                   placeholder="Search">
+          </li>
+        </ul>
+      </form>
     <br>
     <form [formGroup]="expenseEditForm" (ngSubmit)="addExpense()">
       <table class="table table-stripped">

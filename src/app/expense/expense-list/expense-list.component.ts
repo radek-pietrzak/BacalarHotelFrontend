@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ExpenseService} from '../services/expense.service';
 import {Expense} from '../../model/expense';
-import {SearchSortCriterion} from '../../model/search-sort-criterion';
-import {SearchSpecCriterion} from '../../model/search-spec-criterion';
 import {ResponseExpenses} from '../../model/response-expenses';
 import {ExpenseModification} from '../../model/expense-modification';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -16,7 +14,10 @@ import {ExpensePageCriteriaService} from '../services/expense-page-criteria.serv
   selector: 'app-expense-post',
   templateUrl: './expense-list.component.html',
   styleUrls: ['./expense-list.component.css'],
-  providers: [ExpenseService, DatePipe, ExpenseCriteriaRequestService, ExpenseSortCriteriaService]
+  providers: [ExpenseService,
+    DatePipe,
+    ExpenseCriteriaRequestService,
+    ExpenseSortCriteriaService]
 })
 export class ExpenseListComponent implements OnInit {
   private id: string;
@@ -34,13 +35,7 @@ export class ExpenseListComponent implements OnInit {
     expenses: this.expenses
   };
 
-  private searchSpecCriterion: SearchSpecCriterion = {
-    operation: 'CONTAINS',
-    content: ''
-  };
-
   edit = false;
-  searchForm: FormGroup;
 
   constructor(
     private datePipe: DatePipe,
@@ -55,7 +50,6 @@ export class ExpenseListComponent implements OnInit {
   ngOnInit(): void {
     this.getAllExpenses();
     this.expenseAddFormGroup();
-    this.searchFormGroup();
   }
 
   addExpense(): void {
@@ -204,14 +198,6 @@ export class ExpenseListComponent implements OnInit {
       payDate: new FormControl(this.datePipeString, Validators.required),
       payMethod: new FormControl('Credit card', Validators.required),
       expenseCategory: new FormControl('Some category', Validators.required),
-    });
-  }
-
-  searchFormGroup(): void {
-    this.searchForm = new FormGroup({
-      key: new FormControl(null, Validators.required),
-      operation: new FormControl('CONTAINS', Validators.required),
-      content: new FormControl('', Validators.required)
     });
   }
 
@@ -379,4 +365,7 @@ export class ExpenseListComponent implements OnInit {
     return this.expenseSortCriteriaService.showPayDateSortDESCBtn();
   }
 
+  searchForm(): FormGroup {
+    return this.expenseCriteriaRequestService.searchForm();
+  }
 }

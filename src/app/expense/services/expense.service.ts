@@ -18,10 +18,6 @@ export class ExpenseService {
     observable: ResponseExpenses
   };
 
-  public findAll(): Observable<Expense[]> {
-    return this.httpClient.get<Expense[]>(this.url);
-  }
-
   public getAllExpenses(criteriaRequest: ExpenseCriteriaRequest): Observable<ResponseExpenses> {
     return this.httpClient.post<ResponseExpenses>(this.url, criteriaRequest, this.httpOptions);
   }
