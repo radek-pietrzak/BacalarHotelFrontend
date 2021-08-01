@@ -13,8 +13,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {RoomFormComponent} from './room-form/room-form.component';
 import {GuestListComponent} from './guest-list/guest-list.component';
-import {ExpenseListComponent} from './expense-list/expense-list.component';
-import { ExpenseDetailsComponent } from './expense-details/expense-details.component';
+import {ExpenseListComponent} from './expense/expense-list/expense-list.component';
+import { ExpenseDetailsComponent } from './expense/expense-details/expense-details.component';
 
 const routes: Routes = [
   {
@@ -64,7 +64,7 @@ const routes: Routes = [
     GuestListComponent,
     ExpenseListComponent,
     ExpenseListComponent,
-    ExpenseDetailsComponent
+    ExpenseDetailsComponent,
   ],
   imports: [
     BrowserModule,

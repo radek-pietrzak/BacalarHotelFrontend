@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Expense} from '../model/expense';
-import {ExpenseRequest} from '../model/expense-request';
-import {ExpenseCriteriaRequest} from '../model/expense-criteria-request';
-import {ResponseExpenses} from '../model/response-expenses';
+import {Expense} from '../../model/expense';
+import {ExpenseRequest} from '../../model/expense-request';
+import {ExpenseCriteriaRequest} from '../../model/expense-criteria-request';
+import {ResponseExpenses} from '../../model/response-expenses';
 
 @Injectable()
 export class ExpenseService {

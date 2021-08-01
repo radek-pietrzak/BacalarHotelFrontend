@@ -9,7 +9,7 @@
           </button>
         </li>
         <li class="float-left page-name font-weight-bold">
-          Page:  {{(page.number + 1) + '/' + responseExpenses.totalPages}}
+          Page:  {{ getPageNumber() + '/' + responseExpenses.totalPages}}
         </li>
         <li class="float-left">
           <button type="button" class="btn-floating waves-light buttons-light-blue" (click)="nextPage()">
@@ -26,10 +26,16 @@
           </button>
         </li>
         <li class="float-left">
+          &nbsp;
+        </li>
+        <li class="float-left">
           <button type="button" class="btn-floating waves-light buttons-light-blue font-weight-bold"
                   (click)="setPageSize20()">
             20
           </button>
+        </li>
+        <li class="float-left">
+          &nbsp;
         </li>
         <li class="float-left">
           <button type="button" class="btn-floating waves-light buttons-light-blue font-weight-bold"
@@ -40,6 +46,9 @@
         <li class="float-right">
           <input type="text" class="form-control float-right" formControlName="content" name="content" id="content"
                  placeholder="Search">
+        </li>
+        <li class="float-right">
+          &nbsp;
         </li>
         <li class="float-right">
           <button type="submit" class="btn-floating waves-light buttons-light-blue font-weight-bold">
@@ -54,7 +63,7 @@
         <thead class="table-head-light-blue">
         <tr>
           <th scope="col"></th>
-          <th scope="col">User
+          <th scope="col">User &nbsp;
             <button type="button" class="btn-floating buttons-light-blue"
                     (click)="setUserSortASC()"
                     *ngIf="showDefaultSortUserBtn() == true">
@@ -71,7 +80,7 @@
               <i class="material-icons">keyboard_arrow_up</i>
             </button>
           </th>
-          <th scope="col">Amount
+          <th scope="col">Amount &nbsp;
             <button type="button" class="btn-floating buttons-light-blue"
                     (click)="setAmountSortASC()"
                     *ngIf="showDefaultSortAmountBtn() == true">
@@ -88,7 +97,7 @@
               <i class="material-icons">keyboard_arrow_up</i>
             </button>
           </th>
-          <th scope="col">Currency
+          <th scope="col">Currency &nbsp;
             <button type="button" class="btn-floating buttons-light-blue"
                     (click)="setCurrencySortASC()"
                     *ngIf="showDefaultSortCurrencyBtn() == true">
@@ -105,7 +114,7 @@
               <i class="material-icons">keyboard_arrow_up</i>
             </button>
           </th>
-          <th scope="col">Description
+          <th scope="col">Description &nbsp;
             <button type="button" class="btn-floating buttons-light-blue"
                     (click)="setDescriptionSortASC()"
                     *ngIf="showDefaultSortDescriptionBtn() == true">
@@ -122,7 +131,7 @@
               <i class="material-icons">keyboard_arrow_up</i>
             </button>
           </th>
-          <th scope="col">Category
+          <th scope="col">Category &nbsp;
             <button type="button" class="btn-floating buttons-light-blue"
                     (click)="setCategorySortASC()"
                     *ngIf="showDefaultSortCategoryBtn() == true">
@@ -139,7 +148,7 @@
               <i class="material-icons">keyboard_arrow_up</i>
             </button>
           </th>
-          <th scope="col">Pay Method
+          <th scope="col">Pay Method &nbsp;
             <button type="button" class="btn-floating buttons-light-blue"
                     (click)="setPayMethodSortASC()"
                     *ngIf="showDefaultSortPayMethodBtn() == true">
@@ -156,7 +165,7 @@
               <i class="material-icons">keyboard_arrow_up</i>
             </button>
           </th>
-          <th scope="col">Pay Date
+          <th scope="col">Pay Date &nbsp;
             <button type="button" class="btn-floating buttons-light-blue"
                     (click)="setPayDateSortASC()"
                     *ngIf="showDefaultSortPayDateBtn() == true">
