@@ -314,7 +314,7 @@ export class ExpenseListComponent implements OnInit {
 
   setDefaultSort(): void {
     this.searchSortCriterion.key = 'id';
-    this.searchSortCriterion.operation = 'ASC';
+    this.searchSortCriterion.operation = 'DESC';
 
     this.getAllExpenses();
 
@@ -394,7 +394,7 @@ export class ExpenseListComponent implements OnInit {
   }
 
   setCategorySortASC(): void {
-    this.searchSortCriterion.key = 'expenseCategory';
+    this.searchSortCriterion.key = 'expenseCategory.categoryName';
     this.searchSortCriterion.operation = 'ASC';
 
     this.getAllExpenses();
@@ -406,7 +406,7 @@ export class ExpenseListComponent implements OnInit {
   }
 
   setCategorySortDESC(): void {
-    this.searchSortCriterion.key = 'expenseCategory';
+    this.searchSortCriterion.key = 'expenseCategory.categoryName';
     this.searchSortCriterion.operation = 'DESC';
 
     this.getAllExpenses();
@@ -418,7 +418,7 @@ export class ExpenseListComponent implements OnInit {
   }
 
   setPayMethodSortASC(): void {
-    this.searchSortCriterion.key = 'payMethod';
+    this.searchSortCriterion.key = 'payMethod.payMethodName';
     this.searchSortCriterion.operation = 'ASC';
 
     this.getAllExpenses();
@@ -430,7 +430,7 @@ export class ExpenseListComponent implements OnInit {
   }
 
   setPayMethodSortDESC(): void {
-    this.searchSortCriterion.key = 'payMethod';
+    this.searchSortCriterion.key = 'payMethod.payMethodName';
     this.searchSortCriterion.operation = 'DESC';
 
     this.getAllExpenses();
