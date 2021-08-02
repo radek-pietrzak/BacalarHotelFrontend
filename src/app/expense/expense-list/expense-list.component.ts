@@ -40,8 +40,6 @@ export class ExpenseListComponent implements OnInit {
 
   searchForm: FormGroup;
 
-  // fromAmountForm: FormGroup;
-
   constructor(
     private datePipe: DatePipe,
     private expenseService: ExpenseService,
@@ -173,6 +171,11 @@ export class ExpenseListComponent implements OnInit {
       searchCriterion, fromAmountCriterion, toAmountCriterion, fromPayDateCriterion, toPayDateCriterion);
 
     this.getAllExpenses();
+  }
+
+  clearSearch(): void {
+    this.searchFormGroup();
+    this.setNewSearchCriteria();
   }
 
   addExpense(): void {
