@@ -15,6 +15,8 @@ import {RoomFormComponent} from './room-form/room-form.component';
 import {GuestListComponent} from './guest-list/guest-list.component';
 import {ExpenseListComponent} from './expense/expense-list/expense-list.component';
 import { ExpenseDetailsComponent } from './expense/expense-details/expense-details.component';
+import { ExpenseSpecCriteriaComponent } from './expense/expense-spec-criteria/expense-spec-criteria.component';
+import { ExpenseSpecFormComponent } from './expense/expense-spec-form/expense-spec-form.component';
 
 const routes: Routes = [
   {
@@ -65,6 +67,8 @@ const routes: Routes = [
     ExpenseListComponent,
     ExpenseListComponent,
     ExpenseDetailsComponent,
+    ExpenseSpecCriteriaComponent,
+    ExpenseSpecFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +77,7 @@ const routes: Routes = [
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ExpenseSpecCriteriaComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

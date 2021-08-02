@@ -12,12 +12,12 @@ export class ExpenseSpecCriteriaService {
 
   private expenseSearchForm: FormGroup;
 
-  private searchSpecCriterion: SearchSpecCriterion = {
+  private expenseSearchSpecCriterion: SearchSpecCriterion = {
     operation: 'CONTAINS',
     content: ''
   };
 
-  private expenseSearchSpecCriteria: SearchSpecCriterion [] = [this.searchSpecCriterion];
+  private expenseSearchSpecCriteria: SearchSpecCriterion [] = [this.expenseSearchSpecCriterion];
 
   searchFormGroup(): void {
     this.expenseSearchForm = new FormGroup({
@@ -31,6 +31,9 @@ export class ExpenseSpecCriteriaService {
     return this.expenseSearchSpecCriteria;
   }
 
+  set searchSpecCriterion(value: SearchSpecCriterion) {
+    this.expenseSearchSpecCriterion = value;
+  }
 
   get searchForm(): FormGroup {
     return this.expenseSearchForm;

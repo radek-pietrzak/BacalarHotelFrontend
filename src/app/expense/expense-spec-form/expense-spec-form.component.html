@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <ul class="float-right">
+    <li class="float-left">
+      <button type="submit" class="btn-floating waves-light buttons-light-blue font-weight-bold">
+        <i class="material-icons">search</i>
+      </button>
+    </li>
+    <li class="float-left">
+      &nbsp;
+    </li>
+    <li class="float-left">
+      <input type="text" class="form-control float-right" formControlName="content" name="content" id="content"
+             placeholder="Search">
+    </li>
+    <li class="float-left">
+      <input type="text" class="form-control float-right" formControlName="fromAmount" name="fromAmount"
+             id="fromAmount"
+             placeholder="from">
+    </li>
+  </ul>
+<!--  <div formGroupName="name">-->
+<!--    <input formControlName="first" placeholder="First name">-->
+<!--    <input formControlName="last" placeholder="Last name">-->
+<!--  </div>-->
+<!--  <input formControlName="email" placeholder="Email">-->
+<!--  <button type="submit">Submit</button>-->
+</form>

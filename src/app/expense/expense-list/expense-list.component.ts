@@ -9,6 +9,7 @@ import {DatePipe} from '@angular/common';
 import {ExpenseCriteriaRequestService} from '../services/expense-criteria-request.service';
 import {ExpenseSortCriteriaService} from '../services/expense-sort-criteria.service';
 import {ExpensePageCriteriaService} from '../services/expense-page-criteria.service';
+import {SearchSpecCriterion} from '../../model/search-spec-criterion';
 
 @Component({
   selector: 'app-expense-post',
@@ -37,6 +38,10 @@ export class ExpenseListComponent implements OnInit {
 
   edit = false;
 
+  searchForm: FormGroup;
+
+  // fromAmountForm: FormGroup;
+
   constructor(
     private datePipe: DatePipe,
     private expenseService: ExpenseService,
@@ -46,10 +51,128 @@ export class ExpenseListComponent implements OnInit {
     this.datePipeString = datePipe.transform(Date.now(), 'yyyy-MM-dd');
   }
 
-
   ngOnInit(): void {
+    this.searchFormGroup();
     this.getAllExpenses();
     this.expenseAddFormGroup();
+  }
+
+  getPageNumber(): number {
+    return this.expensePageCriteriaService.getPageNumber();
+  }
+
+  previousPage(): void {
+    this.expensePageCriteriaService.previousPage();
+    this.getAllExpenses();
+  }
+
+  nextPage(): void {
+    if (this.responseExpenses.hasNextPage) {
+      this.expensePageCriteriaService.nextPage();
+    }
+    this.getAllExpenses();
+  }
+
+  setPageSize10(): void {
+    this.expensePageCriteriaService.setPageSize10();
+    this.getAllExpenses();
+  }
+
+  setPageSize20(): void {
+    this.expensePageCriteriaService.setPageSize20();
+    this.getAllExpenses();
+  }
+
+  setPageSize50(): void {
+    this.expensePageCriteriaService.setPageSize50();
+    this.getAllExpenses();
+  }
+
+  searchFormGroup(): void {
+    this.searchForm = new FormGroup({
+      search: new FormGroup({
+        key: new FormControl(null, Validators.required),
+        operation: new FormControl('CONTAINS', Validators.required),
+        content: new FormControl(null, Validators.required)
+      }),
+      fromAmount: new FormGroup({
+        key: new FormControl(null, Validators.required),
+        operation: new FormControl('GREATER', Validators.required),
+        content: new FormControl(null, Validators.required)
+      }),
+      toAmount: new FormGroup({
+        key: new FormControl(null, Validators.required),
+        operation: new FormControl('LESS', Validators.required),
+        content: new FormControl(null, Validators.required)
+      }),
+      fromPayDate: new FormGroup({
+        key: new FormControl(null, Validators.required),
+        operation: new FormControl('GREATER', Validators.required),
+        content: new FormControl(null, Validators.required)
+      }),
+      toPayDate: new FormGroup({
+        key: new FormControl(null, Validators.required),
+        operation: new FormControl('LESS', Validators.required),
+        content: new FormControl(null, Validators.required)
+      })
+    });
+  }
+
+  get searchContent(): any {
+    return this.searchForm.get('search.content');
+  }
+
+  get fromAmountContent(): any {
+    return this.searchForm.get('fromAmount.content');
+  }
+
+  get toAmountContent(): any {
+    return this.searchForm.get('toAmount.content');
+  }
+
+  get fromPayDateContent(): any {
+    return this.searchForm.get('fromPayDate.content');
+  }
+
+  get toPayDateContent(): any {
+    return this.searchForm.get('toPayDate.content');
+  }
+
+  setNewSearchCriteria(): void {
+    const searchCriterion: SearchSpecCriterion = {
+      key: '',
+      operation: 'CONTAINS',
+      content: this.searchContent.value
+    };
+
+    const fromAmountCriterion: SearchSpecCriterion = {
+      key: 'amount',
+      operation: 'GREATER',
+      content: this.fromAmountContent.value
+    };
+
+    const toAmountCriterion: SearchSpecCriterion = {
+      key: 'amount',
+      operation: 'LESS',
+      content: this.toAmountContent.value
+    };
+
+    const fromPayDateCriterion: SearchSpecCriterion = {
+      key: 'payDate',
+      operation: 'GREATER',
+      content: this.fromPayDateContent.value
+    };
+
+    const toPayDateCriterion: SearchSpecCriterion = {
+      key: 'payDate',
+      operation: 'LESS',
+      content: this.toPayDateContent.value
+    };
+
+    this.expenseCriteriaRequestService.setCriteriaRequestBySpec(
+      searchCriterion, fromAmountCriterion, toAmountCriterion, fromPayDateCriterion, toPayDateCriterion);
+
+    this.getAllExpenses();
   }
 
   addExpense(): void {
@@ -97,41 +220,6 @@ export class ExpenseListComponent implements OnInit {
       .subscribe(() => {
         this.ngOnInit();
       });
-  }
-
-  searchNewCriteria(): void {
-    this.getAllExpenses();
-  }
-
-  previousPage(): void {
-    this.expensePageCriteriaService.previousPage();
-    this.getAllExpenses();
-  }
-
-  nextPage(): void {
-    if (this.responseExpenses.hasNextPage) {
-      this.expensePageCriteriaService.nextPage();
-    }
-    this.getAllExpenses();
-  }
-
-  setPageSize10(): void {
-    this.expensePageCriteriaService.setPageSize10();
-    this.getAllExpenses();
-  }
-
-  setPageSize20(): void {
-    this.expensePageCriteriaService.setPageSize20();
-    this.getAllExpenses();
-  }
-
-  setPageSize50(): void {
-    this.expensePageCriteriaService.setPageSize50();
-    this.getAllExpenses();
-  }
-
-  getPageNumber(): number {
-    return this.expensePageCriteriaService.getPageNumber();
   }
 
   deleteExpense(id: string): void {
@@ -201,8 +289,8 @@ export class ExpenseListComponent implements OnInit {
     });
   }
 
-  private getAllExpenses(): void {
-    this.expenseService.getAllExpenses(this.expenseCriteriaRequestService.criteriaRequest)
+  getAllExpenses(): void {
+    this.expenseService.getAllExpenses(this.expenseCriteriaRequestService.getCriteriaRequest)
       .subscribe(response => this.responseExpenses = response);
   }
 
@@ -365,7 +453,4 @@ export class ExpenseListComponent implements OnInit {
     return this.expenseSortCriteriaService.showPayDateSortDESCBtn();
   }
 
-  searchForm(): FormGroup {
-    return this.expenseCriteriaRequestService.searchForm();
-  }
 }

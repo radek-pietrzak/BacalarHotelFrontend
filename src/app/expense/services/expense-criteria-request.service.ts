@@ -3,7 +3,8 @@ import {ExpenseCriteriaRequest} from '../../model/expense-criteria-request';
 import {ExpenseSortCriteriaService} from './expense-sort-criteria.service';
 import {ExpensePageCriteriaService} from './expense-page-criteria.service';
 import {ExpenseSpecCriteriaService} from './expense-spec-criteria.service';
-import {FormGroup} from '@angular/forms';
+import {ExpenseSpecCriteriaComponent} from '../expense-spec-criteria/expense-spec-criteria.component';
+import {SearchSpecCriterion} from '../../model/search-spec-criterion';
 
 @Injectable({
   providedIn: 'root'
@@ -12,22 +13,27 @@ export class ExpenseCriteriaRequestService {
 
   constructor(private expenseSortCriteriaService: ExpenseSortCriteriaService,
               private expensePageCriteriaService: ExpensePageCriteriaService,
-              private expenseSpecCriteriaService: ExpenseSpecCriteriaService) {
+              private expenseSpecCriteriaService: ExpenseSpecCriteriaService,
+              private expenseSpecCriteriaComponent: ExpenseSpecCriteriaComponent) {
   }
 
-  private expenseCriteriaRequest: ExpenseCriteriaRequest = {
+  private criteriaRequest: ExpenseCriteriaRequest = {
     page: this.expensePageCriteriaService.page,
     searchSortCriteria: this.expenseSortCriteriaService.searchSortCriteria,
-    searchSpecCriteria: this.expenseSpecCriteriaService.searchSpecCriteria,
+    searchSpecCriteria: this.expenseSpecCriteriaComponent.searchSpecCriteria,
   };
 
-  get criteriaRequest(): ExpenseCriteriaRequest {
-    return this.expenseCriteriaRequest;
+  get getCriteriaRequest(): ExpenseCriteriaRequest {
+    return this.criteriaRequest;
   }
 
-  searchForm(): FormGroup {
-    return this.expenseSpecCriteriaService.searchForm;
+  setCriteriaRequestBySpec(searchCriterion: SearchSpecCriterion,
+                           fromAmountCriterion: SearchSpecCriterion,
+                           toAmountCriterion: SearchSpecCriterion,
+                           fromPayDateCriterion: SearchSpecCriterion,
+                           toPayDateCriterion: SearchSpecCriterion): void {
+    this.criteriaRequest.searchSpecCriteria =
+      [searchCriterion, fromAmountCriterion, toAmountCriterion, fromPayDateCriterion, toPayDateCriterion];
   }
-
 
 }

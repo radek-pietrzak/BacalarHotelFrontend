@@ -32,7 +32,7 @@ export class ExpenseSortCriteriaService {
   private flagPayDateSortKey = false;
   private flagPayDateSortOpASC = false;
 
-  get searchSortCriteria(): SearchSortCriterion[] {
+  get searchSortCriteria(): SearchSortCriterion [] {
     return this.expenseSearchSortCriteria;
   }
 
