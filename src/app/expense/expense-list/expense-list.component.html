@@ -43,67 +43,12 @@
         </button>
       </li>
     </ul>
-    <form [formGroup]="searchForm" (ngSubmit)="setNewSearchCriteria()">
-      <ul class="float-right">
-        <li class="float-left">
-          <ul>
-            <li>
-              <button type="button" class="btn-floating waves-light buttons-light-red font-weight-bold"
-                      (click)="clearSearch()">
-                <i class="material-icons">clear</i>
-              </button>
-            </li>
-            <li>
-              <button type="submit" class="btn-floating waves-light buttons-light-blue font-weight-bold">
-                <i class="material-icons">search</i>
-              </button>
-            </li>
-          </ul>
-        </li>
-        <li class="float-left">
-          &nbsp;
-        </li>
-        <li class="float-left" formGroupName="search">
-          <label for="search">&nbsp;</label>
-          <input type="text" class="form-control float-right" formControlName="content" name="content" id="search"
-                 placeholder="Search">
-        </li>
-        <li class="float-left">
-          <ul>
-            <li class="float-left" formGroupName="fromAmount">
-              <label for="fromAmount">Amount</label>
-              <input type="text" class="form-control float-right" formControlName="content" name="fromAmount"
-                     id="fromAmount" placeholder="from">
-            </li>
-            <li class="float-left" formGroupName="toAmount">
-              <label for="toAmount">&nbsp;</label>
-              <input type="text" class="form-control float-right" formControlName="content" name="toAmount"
-                     id="toAmount" placeholder="to">
-            </li>
-          </ul>
-        </li>
-        <li class="float-left">
-          <ul>
-            <li class="float-left" formGroupName="fromPayDate">
-              <label for="fromPayDate">Pay Date: &nbsp;&nbsp;from</label>
-              <input type="date" class="form-control float-right" formControlName="content" name="fromPayDate"
-                     id="fromPayDate">
-            </li>
-            <li class="float-left" formGroupName="toPayDate">
-              <label for="toPayDate">to</label>
-              <input type="date" class="form-control float-right" formControlName="content" name="toPayDate"
-                     id="toPayDate">
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </form>
-    <br>
+    <app-expense-spec-form></app-expense-spec-form>
     <form [formGroup]="expenseEditForm" (ngSubmit)="addExpense()">
       <table class="table table-stripped">
         <thead class="table-head-light-blue">
         <tr>
-          <th scope="col"></th>
+          <th scope="col" style="width: 150px"></th>
           <th scope="col">User &nbsp;
             <button type="button" class="btn-floating buttons-light-blue"
                     (click)="setUserSortASC()"
