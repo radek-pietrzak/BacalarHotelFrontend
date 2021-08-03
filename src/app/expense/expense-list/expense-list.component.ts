@@ -13,7 +13,7 @@ import {ExpensePageCriteriaService} from '../services/expense-page-criteria.serv
 @Component({
   selector: 'app-expense-post',
   templateUrl: './expense-list.component.html',
-  styleUrls: ['./expense-list.component.css'],
+  styleUrls: ['../expense.css'],
   providers: [ExpenseService,
     DatePipe,
     ExpenseCriteriaRequestService,

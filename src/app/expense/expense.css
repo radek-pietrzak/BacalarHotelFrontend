@@ -1,0 +1,70 @@
+.table-head-light-blue {
+  color: black;
+  background-color: #99ccff;
+}
+
+.buttons-light-blue {
+  color: white;
+  background-color: #99ccff;
+}
+
+.btn-light-blue:active {
+  color: white;
+  background-color: #99ccff;
+  font-weight: bold;
+  box-shadow: 1px 1px 1px black;
+}
+
+.btn-light-blue:hover {
+  color: white;
+  background-color: #72b7fc;
+  font-weight: bold;
+}
+
+.btn-light-blue {
+  color: white;
+  background-color: #99ccff;
+  font-weight: bold;
+  box-shadow: 1px 1px 3px black;
+}
+
+.btn-light-red:active {
+  color: white;
+  background-color: #ffb3b3;
+  font-weight: bold;
+  box-shadow: 1px 1px 1px black;
+}
+
+.btn-light-red:hover {
+  color: white;
+  background-color: #ff8a8a;
+  font-weight: bold;
+}
+
+.btn-light-red {
+  color: white;
+  background-color: #ffb3b3;
+  font-weight: bold;
+  box-shadow: 1px 1px 3px black;
+}
+
+.buttons-light-grey {
+  color: white;
+  background-color: #c5c5c5;
+}
+
+.page-name {
+  color: black;
+  padding: 10px;
+}
+
+.table-stripped {
+}
+
+.table-stripped:nth-child(odd) {
+  background-color: #e6f2ff;
+}
+
+.table-stripped:nth-child(even) {
+  background-color: white;
+}

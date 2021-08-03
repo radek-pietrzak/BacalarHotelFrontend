@@ -3,7 +3,7 @@
   <div class="card-body">
     <ul class="float-left">
       <li class="float-left">
-        <button type="button" class="btn-floating waves-light buttons-light-blue" (click)="previousPage()">
+        <button type="button" class="btn-floating btn-light-blue" (click)="previousPage()">
           <i class="material-icons">arrow_back</i>
         </button>
       </li>
@@ -11,7 +11,8 @@
         Page:  {{ getPageNumber() + '/' + responseExpenses.totalPages}}
       </li>
       <li class="float-left">
-        <button type="button" class="btn-floating waves-light buttons-light-blue" (click)="nextPage()">
+        <button type="button" class="btn-floating
+         btn-light-blue" (click)="nextPage()">
           <i class="material-icons">arrow_forward</i>
         </button>
       </li>
@@ -19,7 +20,7 @@
         Page Size:
       </li>
       <li class="float-left">
-        <button type="button" class="btn-floating waves-light buttons-light-blue font-weight-bold"
+        <button type="button" class="btn-floating btn-light-blue"
                 (click)="setPageSize10()">
           10
         </button>
@@ -28,7 +29,8 @@
         &nbsp;
       </li>
       <li class="float-left">
-        <button type="button" class="btn-floating waves-light buttons-light-blue font-weight-bold"
+        <button type="button" class="btn-floating
+         btn-light-blue font-weight-bold"
                 (click)="setPageSize20()">
           20
         </button>
@@ -37,7 +39,8 @@
         &nbsp;
       </li>
       <li class="float-left">
-        <button type="button" class="btn-floating waves-light buttons-light-blue font-weight-bold"
+        <button type="button" class="btn-floating
+         btn-light-blue font-weight-bold"
                 (click)="setPageSize50()">
           50
         </button>
@@ -50,119 +53,119 @@
         <tr>
           <th scope="col" style="width: 150px"></th>
           <th scope="col">User &nbsp;
-            <button type="button" class="btn-floating buttons-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     (click)="setUserSortASC()"
                     *ngIf="showDefaultSortUserBtn() == true">
               <i class="material-icons">unfold_more</i>
             </button>
-            <button type="button" class="btn-floating buttons-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     (click)="setUserSortDESC()"
                     *ngIf="showUserSortASCBtn() == true">
               <i class="material-icons">keyboard_arrow_down</i>
             </button>
-            <button type="button" class="btn-floating buttons-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     (click)="setDefaultSort()"
                     *ngIf="showUserSortDESCBtn() == true">
               <i class="material-icons">keyboard_arrow_up</i>
             </button>
           </th>
           <th scope="col">Amount &nbsp;
-            <button type="button" class="btn-floating buttons-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     (click)="setAmountSortASC()"
                     *ngIf="showDefaultSortAmountBtn() == true">
               <i class="material-icons">unfold_more</i>
             </button>
-            <button type="button" class="btn-floating buttons-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     (click)="setAmountSortDESC()"
                     *ngIf="showAmountSortASCBtn() == true">
               <i class="material-icons">keyboard_arrow_down</i>
             </button>
-            <button type="button" class="btn-floating buttons-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     (click)="setDefaultSort()"
                     *ngIf="showAmountSortDESCBtn() == true">
               <i class="material-icons">keyboard_arrow_up</i>
             </button>
           </th>
           <th scope="col">Currency &nbsp;
-            <button type="button" class="btn-floating buttons-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     (click)="setCurrencySortASC()"
                     *ngIf="showDefaultSortCurrencyBtn() == true">
               <i class="material-icons">unfold_more</i>
             </button>
-            <button type="button" class="btn-floating buttons-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     (click)="setCurrencySortDESC()"
                     *ngIf="showCurrencySortASCBtn() == true">
               <i class="material-icons">keyboard_arrow_down</i>
             </button>
-            <button type="button" class="btn-floating buttons-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     (click)="setDefaultSort()"
                     *ngIf="showCurrencySortDESCBtn() == true">
               <i class="material-icons">keyboard_arrow_up</i>
             </button>
           </th>
           <th scope="col">Description &nbsp;
-            <button type="button" class="btn-floating buttons-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     (click)="setDescriptionSortASC()"
                     *ngIf="showDefaultSortDescriptionBtn() == true">
               <i class="material-icons">unfold_more</i>
             </button>
-            <button type="button" class="btn-floating buttons-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     (click)="setDescriptionSortDESC()"
                     *ngIf="showDescriptionSortASCBtn() == true">
               <i class="material-icons">keyboard_arrow_down</i>
             </button>
-            <button type="button" class="btn-floating buttons-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     (click)="setDefaultSort()"
                     *ngIf="showDescriptionSortDESCBtn() == true">
               <i class="material-icons">keyboard_arrow_up</i>
             </button>
           </th>
           <th scope="col">Category &nbsp;
-            <button type="button" class="btn-floating buttons-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     (click)="setCategorySortASC()"
                     *ngIf="showDefaultSortCategoryBtn() == true">
               <i class="material-icons">unfold_more</i>
             </button>
-            <button type="button" class="btn-floating buttons-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     (click)="setCategorySortDESC()"
                     *ngIf="showCategorySortASCBtn() == true">
               <i class="material-icons">keyboard_arrow_down</i>
             </button>
-            <button type="button" class="btn-floating buttons-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     (click)="setDefaultSort()"
                     *ngIf="showCategorySortDESCBtn() == true">
               <i class="material-icons">keyboard_arrow_up</i>
             </button>
           </th>
           <th scope="col">Pay Method &nbsp;
-            <button type="button" class="btn-floating buttons-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     (click)="setPayMethodSortASC()"
                     *ngIf="showDefaultSortPayMethodBtn() == true">
               <i class="material-icons">unfold_more</i>
             </button>
-            <button type="button" class="btn-floating buttons-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     (click)="setPayMethodSortDESC()"
                     *ngIf="showPayMethodSortASCBtn() == true">
               <i class="material-icons">keyboard_arrow_down</i>
             </button>
-            <button type="button" class="btn-floating buttons-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     (click)="setDefaultSort()"
                     *ngIf="showPayMethodSortDESCBtn() == true">
               <i class="material-icons">keyboard_arrow_up</i>
             </button>
           </th>
           <th scope="col">Pay Date &nbsp;
-            <button type="button" class="btn-floating buttons-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     (click)="setPayDateSortASC()"
                     *ngIf="showDefaultSortPayDateBtn() == true">
               <i class="material-icons">unfold_more</i>
             </button>
-            <button type="button" class="btn-floating buttons-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     (click)="setPayDateSortDESC()"
                     *ngIf="showPayDateSortASCBtn() == true">
               <i class="material-icons">keyboard_arrow_down</i>
             </button>
-            <button type="button" class="btn-floating buttons-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     (click)="setDefaultSort()"
                     *ngIf="showPayDateSortDESCBtn() == true">
               <i class="material-icons">keyboard_arrow_up</i>
@@ -173,7 +176,7 @@
         <tbody>
         <tr *ngIf="!edit">
           <td scope="col">
-            <button type="submit" class="btn-floating waves-light table-head-light-blue">
+            <button type="submit" class="btn-floating btn-light-blue">
               <i class="material-icons">add</i>
             </button>
           </td>
@@ -203,31 +206,34 @@
         </tr>
         <tr *ngIf="edit">
           <td>
-            <button type="button" class="btn-floating waves-light table-head-light-blue">
+            <button type="button" class="btn-floating btn-light-blue">
               <i class="material-icons"></i>
             </button>
           </td>
         </tr>
         <tr *ngFor="let expense of responseExpenses.expenses" class="table-stripped">
           <td *ngIf="!edit || edit && expense.id != expenseId">
-            <button type="button" class="btn-floating waves-light buttons-light-red"
+            <button type="button" class="btn-floating btn-light-red"
                     (click)="deleteExpense(expense.id)">
               <i class="material-icons">remove</i>
             </button>
-            <button type="button" class="btn-floating waves-light buttons-light-blue"
+            <button type="button" class="btn-floating
+             btn-light-blue"
                     [routerLink]="['/expense-details/', expense.id]">
               <i class="material-icons">visibility</i>
             </button>
-            <button type="button" class="btn-floating waves-light buttons-light-blue" (click)="setEditOn(expense.id)">
+            <button type="button" class="btn-floating
+             btn-light-blue" (click)="setEditOn(expense.id)">
               <i class="material-icons">edit</i>
             </button>
           </td>
           <td *ngIf="edit && expense.id == expenseId">
-            <button type="button" class="btn-floating waves-light buttons-light-red" (click)="setEditOff()"
+            <button type="button" class="btn-floating btn-light-red" (click)="setEditOff()"
                     (keyup.escape)="setEditOff()">
               <i class="material-icons">clear</i>
             </button>
-            <button type="button" class="btn-floating waves-light buttons-light-blue" (click)="setEditOffWithUpdate()"
+            <button type="button" class="btn-floating
+             btn-light-blue" (click)="setEditOffWithUpdate()"
                     (keyup.enter)="setEditOffWithUpdate()">
               <i class="material-icons">done</i>
             </button>

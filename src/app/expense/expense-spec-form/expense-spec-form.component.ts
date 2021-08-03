@@ -7,7 +7,7 @@ import {ExpenseCriteriaRequestService} from '../services/expense-criteria-reques
 @Component({
   selector: 'app-expense-spec-form',
   templateUrl: './expense-spec-form.component.html',
-  styleUrls: ['./expense-spec-form.component.css']
+  styleUrls: ['../expense.css']
 })
 export class ExpenseSpecFormComponent {
 
