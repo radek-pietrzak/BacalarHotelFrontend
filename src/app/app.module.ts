@@ -17,6 +17,7 @@ import {ExpenseListComponent} from './expense/expense-list/expense-list.componen
 import { ExpenseDetailsComponent } from './expense/expense-details/expense-details.component';
 import { ExpenseSpecCriteriaComponent } from './expense/expense-spec-criteria/expense-spec-criteria.component';
 import { ExpenseSpecFormComponent } from './expense/expense-spec-form/expense-spec-form.component';
+import { ExpenseCurrentMonthHeaderComponent } from './expense/expense-current-month-header/expense-current-month-header.component';
 
 const routes: Routes = [
   {
@@ -69,6 +70,7 @@ const routes: Routes = [
     ExpenseDetailsComponent,
     ExpenseSpecCriteriaComponent,
     ExpenseSpecFormComponent,
+    ExpenseCurrentMonthHeaderComponent,
   ],
   imports: [
     BrowserModule,

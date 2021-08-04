@@ -36,6 +36,7 @@ export class ExpenseListComponent implements OnInit {
   };
 
   edit = false;
+  pageSizeBtnActive = 0;
 
   constructor(
     private datePipe: DatePipe,
@@ -70,16 +71,19 @@ export class ExpenseListComponent implements OnInit {
   setPageSize10(): void {
     this.expensePageCriteriaService.setPageSize10();
     this.getAllExpenses();
+    this.pageSizeBtnActive = 10;
   }
 
   setPageSize20(): void {
     this.expensePageCriteriaService.setPageSize20();
     this.getAllExpenses();
+    this.pageSizeBtnActive = 20;
   }
 
   setPageSize50(): void {
     this.expensePageCriteriaService.setPageSize50();
     this.getAllExpenses();
+    this.pageSizeBtnActive = 50;
   }
 
   addExpense(): void {
@@ -151,14 +155,14 @@ export class ExpenseListComponent implements OnInit {
     this.expenseId = id;
     this.expenseService.getExpense(id).subscribe(response => this.expense = response);
 
-    setTimeout(() => this.expenseUpdateFormGroup(), 1000);
+    setTimeout(() => this.expenseUpdateFormGroup(), 100);
 
     this.edit = true;
 
   }
 
   setEditOff(): void {
-    setTimeout(() => this.expenseAddFormGroup(), 1000);
+    setTimeout(() => this.expenseAddFormGroup(), 100);
     this.edit = false;
     window.location.reload();
 
@@ -166,7 +170,7 @@ export class ExpenseListComponent implements OnInit {
 
   setEditOffWithUpdate(): void {
     this.updateExpense();
-    setTimeout(() => this.expenseAddFormGroup(), 1000);
+    setTimeout(() => this.expenseAddFormGroup(), 100);
     this.edit = false;
     this.ngOnInit();
 

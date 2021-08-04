@@ -3,9 +3,11 @@
   background-color: #99ccff;
 }
 
-.buttons-light-blue {
+.btn-light-blue {
   color: white;
   background-color: #99ccff;
+  font-weight: bold;
+  box-shadow: 1px 1px 3px black;
 }
 
 .btn-light-blue:active {
@@ -19,13 +21,6 @@
   color: white;
   background-color: #72b7fc;
   font-weight: bold;
-}
-
-.btn-light-blue {
-  color: white;
-  background-color: #99ccff;
-  font-weight: bold;
-  box-shadow: 1px 1px 3px black;
 }
 
 .btn-light-red:active {

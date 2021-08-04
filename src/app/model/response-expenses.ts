@@ -4,5 +4,6 @@ export class ResponseExpenses {
   page: any;
   hasNextPage: boolean;
   totalPages: number;
+  date?: string;
   expenses: Expense[];
 }
