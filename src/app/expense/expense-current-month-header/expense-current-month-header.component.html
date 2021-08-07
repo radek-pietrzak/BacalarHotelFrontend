@@ -35,27 +35,27 @@
         </li>
       </ul>
     </form>
-<!--    <form class="float-left" [formGroup]="formMonth" (ngSubmit)="submitMonth()" style="max-width: 200px">-->
-<!--      <ul class="form-group float-left">-->
-<!--        <li class="float-left">-->
-<!--          &nbsp;-->
-<!--        </li>-->
-<!--        <li class="float-left">-->
-<!--          <select name="selectedMonth" id="selectYear" class="form-control" formControlName="month"-->
-<!--                  [(ngModel)]="selectedMonth"-->
-<!--                  style="font-size: x-large">-->
-<!--            <option class="input" *ngFor="let month of months" [ngValue]="month"-->
-<!--                    style="font-size: x-large; text-align: center">{{month}}</option>-->
-<!--          </select>-->
-<!--        </li>-->
-<!--        <li class="float-right">-->
-<!--          <button type="submit">-->
-<!--            Submit-->
-<!--          </button>-->
-<!--        </li>-->
-<!--      </ul>-->
-<!--      <br>-->
-<!--    </form>-->
+    <form class="float-left" [formGroup]="formMonth" (ngSubmit)="submitDate()" style="max-width: 200px">
+      <ul class="form-group float-left">
+        <li class="float-left">
+          &nbsp;
+        </li>
+        <li class="float-left">
+          <select name="selectedMonth" id="selectYear" class="form-control" formControlName="month"
+                  [(ngModel)]="selectedMonth"
+                  style="font-size: x-large">
+            <option class="input" *ngFor="let month of months" [ngValue]="month"
+                    style="font-size: x-large; text-align: center">{{month}}</option>
+          </select>
+        </li>
+        <li class="float-right">
+          <button type="submit">
+            Submit
+          </button>
+        </li>
+      </ul>
+      <br>
+    </form>
   </ul>
   <br>
 </div>
