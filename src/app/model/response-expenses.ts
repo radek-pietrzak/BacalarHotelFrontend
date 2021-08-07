@@ -4,6 +4,7 @@ export class ResponseExpenses {
   page: any;
   hasNextPage: boolean;
   totalPages: number;
-  date?: string;
+  currentDate?: string;
+  requestedDate?: string;
   expenses: Expense[];
 }

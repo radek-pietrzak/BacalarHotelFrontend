@@ -1,7 +1,65 @@
-<button type="button" class="btn-floating btn-light-blue" (click)="previousMonth()">
-  <i class="material-icons">arrow_back</i>
-</button>
-{{getDate()}}
-<button type="button" class="btn-floating btn-light-blue" (click)="nextMonth()">
-  <i class="material-icons">arrow_forward</i>
-</button>
+<div style="font-size: xx-large">
+  <ul class="float-left">
+    <li class="float-left">
+      Expense List&nbsp;&nbsp;&nbsp;
+    </li>
+    <li class="float-left">
+      <button type="button" class="btn-floating btn-light-blue" (click)="previousMonth()">
+        <i class="material-icons">arrow_back</i>
+      </button>
+    </li>
+    <li class="float-left" style="text-align: center; min-width: 250px">
+      &nbsp;{{getMonth()}}&nbsp;{{getYear()}}&nbsp;
+    </li>
+    <li class="float-left">
+      <button type="button" class="btn-floating btn-light-blue" (click)="nextMonth()">
+        <i class="material-icons">arrow_forward</i>
+      </button>
+    </li>
+    <li class="float-left">
+      &nbsp;
+    </li>
+    <li class="float-left">
+      <button type="button" class="btn-floating btn-light-blue">
+        <i class="material-icons">date_range</i>
+      </button>
+    </li>
+    <form class="float-left" (ngSubmit)="selectedMonth" style="max-width: 200px">
+      <ul class="form-group float-left">
+        <li class="float-left">
+          <select name="selectedMonth" id="selectMonth" class="form-control" [(ngModel)]="selectedMonth"
+                  style="font-size: x-large">
+            <option class="input" *ngFor="let month of months" [value]="month"
+                    style="font-size: x-large; text-align: center">{{month}}</option>
+          </select>
+        </li>
+      </ul>
+    </form>
+<!--    <form class="float-left" [formGroup]="formMonth" (ngSubmit)="submitMonth()" style="max-width: 200px">-->
+<!--      <ul class="form-group float-left">-->
+<!--        <li class="float-left">-->
+<!--          &nbsp;-->
+<!--        </li>-->
+<!--        <li class="float-left">-->
+<!--          <select name="selectedMonth" id="selectYear" class="form-control" formControlName="month"-->
+<!--                  [(ngModel)]="selectedMonth"-->
+<!--                  style="font-size: x-large">-->
+<!--            <option class="input" *ngFor="let month of months" [ngValue]="month"-->
+<!--                    style="font-size: x-large; text-align: center">{{month}}</option>-->
+<!--          </select>-->
+<!--        </li>-->
+<!--        <li class="float-right">-->
+<!--          <button type="submit">-->
+<!--            Submit-->
+<!--          </button>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--      <br>-->
+<!--    </form>-->
+  </ul>
+  <br>
+</div>
+<br>
+
+
+

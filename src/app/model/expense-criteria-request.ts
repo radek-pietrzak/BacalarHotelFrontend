@@ -4,7 +4,7 @@ import {SearchSpecCriterion} from './search-spec-criterion';
 
 export class ExpenseCriteriaRequest {
   page?: Page;
-  month?: number;
+  requestedDate?: string;
   searchSortCriteria?: SearchSortCriterion [];
   searchSpecCriteria?: SearchSpecCriterion [];
 
