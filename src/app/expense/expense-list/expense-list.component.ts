@@ -32,6 +32,8 @@ export class ExpenseListComponent implements OnInit {
     page: 0,
     hasNextPage: false,
     totalPages: 0,
+    currentDate: '2021-08-06',
+    requestedDate: '2021-07-06',
     expenses: this.expenses
   };
 

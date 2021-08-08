@@ -17,22 +17,28 @@ export class ExpenseCurrentMonthHeaderComponent implements OnInit {
 
   private expenseList: ExpenseListComponent;
   private expenseRequest: ExpenseCriteriaRequestService;
-  private currentMonth: string;
   months: string[] = ['January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'];
-  selectedMonth = 'January';
+  selectedMonth = '';
+  years: number[];
+  selectedYear = 2021;
   currentDate: string;
-  requestedDate: string;
-  formMonth = new FormGroup({
-    month: new FormControl(this.selectedMonth, Validators.required)
+  flagEditDateActive = false;
+  formDate = new FormGroup({
+    month: new FormControl(this.selectedMonth, Validators.required),
+    year: new FormControl(this.selectedYear, Validators.required)
   });
 
   ngOnInit(): void {
+    // this.selectedMonth = this.expenseList.responseExpenses.requestedDate.substring(5, 7);
+    // this.selectedYear = Number(this.expenseList.responseExpenses.requestedDate.substring(0, 4));
   }
 
   getYear(): string {
     if (null != this.expenseList.responseExpenses.requestedDate) {
-      return this.expenseList.responseExpenses.requestedDate.substring(0, 4);
+      const year = this.expenseList.responseExpenses.requestedDate.substring(0, 4);
+      this.selectedYear = Number(year);
+      return year;
     }
     return 'Can\'t read the year';
   }
@@ -127,60 +133,90 @@ export class ExpenseCurrentMonthHeaderComponent implements OnInit {
     this.expenseList.getAllExpenses();
   }
 
+  setYears(): void {
+    this.selectedYear = Number(this.expenseList.responseExpenses.currentDate.substring(0, 4));
+    const date = this.expenseList.responseExpenses.currentDate;
+    let dateNumber = Number(date.substring(0, 4));
+    let step;
+    this.years = [2021];
+    for (step = 0; step < 5; step++) {
+      dateNumber -= 1;
+      this.years.push(dateNumber);
+    }
+  }
 
-  submitDate(): void {
-    let monthNumber: number;
-    switch (this.selectedMonth) {
+
+  dateSubmit(): void {
+    const month: any = {
+      month: this.formDate.value.month,
+      year: this.formDate.value.year
+    };
+
+    let monthNumber: string;
+    switch (month.month) {
       case 'January':
-        monthNumber = 1;
+        monthNumber = '01';
         break;
       case 'February':
-        monthNumber = 2;
+        monthNumber = '02';
         break;
       case 'March':
-        monthNumber = 3;
+        monthNumber = '03';
         break;
       case 'April':
-        monthNumber = 4;
+        monthNumber = '04';
         break;
       case 'May':
-        monthNumber = 5;
+        monthNumber = '05';
         break;
       case 'June':
-        monthNumber = 6;
+        monthNumber = '06';
         break;
       case 'July':
-        monthNumber = 7;
+        monthNumber = '07';
         break;
       case 'August':
-        monthNumber = 8;
+        monthNumber = '08';
         break;
       case 'September':
-        monthNumber = 9;
+        monthNumber = '09';
         break;
       case 'October':
-        monthNumber = 10;
+        monthNumber = '10';
         break;
       case 'November':
-        monthNumber = 11;
+        monthNumber = '11';
         break;
       case 'December':
-        monthNumber = 12;
+        monthNumber = '12';
         break;
       default:
-        monthNumber = 0;
+        monthNumber = '01';
     }
-    const yearNumber = 2021;
+    const year = month.year;
 
-    if (monthNumber < 10) {
-      this.expenseRequest.getCriteriaRequest.requestedDate = yearNumber + '-0' + monthNumber + '-01';
-    } else {
-      this.expenseRequest.getCriteriaRequest.requestedDate = yearNumber + '-' + monthNumber + '-01';
-    }
+    this.expenseRequest.getCriteriaRequest.requestedDate = year + '-' + monthNumber + '-01';
+    console.log(this.expenseRequest.getCriteriaRequest.requestedDate);
+
+    this.flagEditDateActive = false;
 
     this.expenseList.getAllExpenses();
 
   }
 
+  setEditDateActive(): void {
+    this.setYears();
+    this.flagEditDateActive = true;
+  }
 
+  setEditDateInactive(): void {
+    this.flagEditDateActive = false;
+  }
+
+  getYearNumber(): number {
+    if (null != this.expenseList.responseExpenses.requestedDate) {
+      return Number(this.expenseList.responseExpenses.requestedDate.substring(0, 4));
+    }
+    return 2021;
+  }
 }
