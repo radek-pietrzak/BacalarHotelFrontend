@@ -8,7 +8,6 @@ import {ExpenseRequest} from '../../model/expense-request';
 import {DatePipe} from '@angular/common';
 import {ExpenseCriteriaRequestService} from '../services/expense-criteria-request.service';
 import {ExpenseSortCriteriaService} from '../services/expense-sort-criteria.service';
-import {ExpensePageCriteriaService} from '../services/expense-page-criteria.service';
 
 @Component({
   selector: 'app-expense-post',
@@ -38,54 +37,18 @@ export class ExpenseListComponent implements OnInit {
   };
 
   edit = false;
-  pageSizeBtnActive = 0;
 
   constructor(
     private datePipe: DatePipe,
     private expenseService: ExpenseService,
     private expenseCriteriaRequestService: ExpenseCriteriaRequestService,
-    private expenseSortCriteriaService: ExpenseSortCriteriaService,
-    private expensePageCriteriaService: ExpensePageCriteriaService) {
+    private expenseSortCriteriaService: ExpenseSortCriteriaService) {
     this.datePipeString = datePipe.transform(Date.now(), 'yyyy-MM-dd');
   }
 
   ngOnInit(): void {
     this.getAllExpenses();
     this.expenseAddFormGroup();
-  }
-
-  getPageNumber(): number {
-    return this.expensePageCriteriaService.getPageNumber();
-  }
-
-  previousPage(): void {
-    this.expensePageCriteriaService.previousPage();
-    this.getAllExpenses();
-  }
-
-  nextPage(): void {
-    if (this.responseExpenses.hasNextPage) {
-      this.expensePageCriteriaService.nextPage();
-    }
-    this.getAllExpenses();
-  }
-
-  setPageSize10(): void {
-    this.expensePageCriteriaService.setPageSize10();
-    this.getAllExpenses();
-    this.pageSizeBtnActive = 10;
-  }
-
-  setPageSize20(): void {
-    this.expensePageCriteriaService.setPageSize20();
-    this.getAllExpenses();
-    this.pageSizeBtnActive = 20;
-  }
-
-  setPageSize50(): void {
-    this.expensePageCriteriaService.setPageSize50();
-    this.getAllExpenses();
-    this.pageSizeBtnActive = 50;
   }
 
   addExpense(): void {

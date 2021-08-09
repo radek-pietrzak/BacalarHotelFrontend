@@ -26,14 +26,14 @@
             <li class="float-left">
               &nbsp;
             </li>
-            <li class="float-left">
+            <li class="float-left dropdown">
               <select name="selectedMonth" id="selectedMonth" class="form-control" formControlName="month"
                       style="font-size: x-large">
                 <option class="input" *ngFor="let month of monthNameList"
                         style="font-size: x-large; text-align: center">{{month}}</option>
               </select>
             </li>
-            <li class="float-left">
+            <li class="float-left dropdown">
               <select name="selectedYear" id="selectedYear" class="form-control" formControlName="year"
                       style="font-size: x-large">
                 <option class="input" *ngFor="let year of yearList"

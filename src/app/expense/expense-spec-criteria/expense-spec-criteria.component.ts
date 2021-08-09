@@ -4,7 +4,7 @@ import {SearchSpecCriterion} from '../../model/search-spec-criterion';
 @Component({
   selector: 'app-expense-spec-criteria',
   templateUrl: './expense-spec-criteria.component.html',
-  styleUrls: ['./expense-spec-criteria.component.css'],
+  styleUrls: ['../expense.css'],
   providers: []
 })
 export class ExpenseSpecCriteriaComponent implements OnInit {

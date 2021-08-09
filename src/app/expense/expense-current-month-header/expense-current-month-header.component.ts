@@ -17,6 +17,7 @@ export class ExpenseCurrentMonthHeaderComponent implements OnInit {
 
   private expenseList: ExpenseListComponent;
   private expenseRequest: ExpenseCriteriaRequestService;
+
   private monthNames: string[] = ['January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'];
   monthNameList: string[];

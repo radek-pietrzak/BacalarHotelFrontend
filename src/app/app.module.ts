@@ -18,6 +18,7 @@ import { ExpenseDetailsComponent } from './expense/expense-details/expense-detai
 import { ExpenseSpecCriteriaComponent } from './expense/expense-spec-criteria/expense-spec-criteria.component';
 import { ExpenseSpecFormComponent } from './expense/expense-spec-form/expense-spec-form.component';
 import { ExpenseCurrentMonthHeaderComponent } from './expense/expense-current-month-header/expense-current-month-header.component';
+import { ExpensePageCriteriaComponent } from './expense/expense-page-criteria/expense-page-criteria.component';
 
 const routes: Routes = [
   {
@@ -71,6 +72,7 @@ const routes: Routes = [
     ExpenseSpecCriteriaComponent,
     ExpenseSpecFormComponent,
     ExpenseCurrentMonthHeaderComponent,
+    ExpensePageCriteriaComponent,
   ],
   imports: [
     BrowserModule,
