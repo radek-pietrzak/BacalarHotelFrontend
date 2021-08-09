@@ -17,33 +17,39 @@ export class ExpenseCurrentMonthHeaderComponent implements OnInit {
 
   private expenseList: ExpenseListComponent;
   private expenseRequest: ExpenseCriteriaRequestService;
-  months: string[] = ['January', 'February', 'March', 'April', 'May', 'June',
+  private monthNames: string[] = ['January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'];
-  selectedMonth = '';
-  years: number[];
-  selectedYear = 2021;
-  currentDate: string;
+  monthNameList: string[];
+  private requestedMonthName: string;
+  yearList: number[];
+  private requestedYear: number;
   flagEditDateActive = false;
-  formDate = new FormGroup({
-    month: new FormControl(this.selectedMonth, Validators.required),
-    year: new FormControl(this.selectedYear, Validators.required)
-  });
+  formDate: FormGroup;
 
   ngOnInit(): void {
-    // this.selectedMonth = this.expenseList.responseExpenses.requestedDate.substring(5, 7);
-    // this.selectedYear = Number(this.expenseList.responseExpenses.requestedDate.substring(0, 4));
+    this.requestedMonthName = this.getMonthName();
+    this.requestedYear = this.getRequestedYear();
+    this.formDateGroup();
+  }
+
+  formDateGroup(): void {
+    this.formDate = new FormGroup({
+      month: new FormControl(this.requestedMonthName, Validators.required),
+      year: new FormControl(this.requestedYear, Validators.required)
+    });
   }
 
   getYear(): string {
     if (null != this.expenseList.responseExpenses.requestedDate) {
       const year = this.expenseList.responseExpenses.requestedDate.substring(0, 4);
-      this.selectedYear = Number(year);
+      this.requestedYear = Number(year);
+      this.formDateGroup();
       return year;
     }
     return 'Can\'t read the year';
   }
 
-  getMonth(): string {
+  getMonthName(): string {
     if (null != this.expenseList.responseExpenses.requestedDate) {
       let month = this.expenseList.responseExpenses.requestedDate.substring(5, 7);
 
@@ -87,7 +93,8 @@ export class ExpenseCurrentMonthHeaderComponent implements OnInit {
         default:
           month = 'Can\'t read the month';
       }
-      this.selectedMonth = month;
+      this.requestedMonthName = month;
+      this.formDateGroup();
       return month;
     }
     return 'Can\'t read the month';
@@ -98,8 +105,8 @@ export class ExpenseCurrentMonthHeaderComponent implements OnInit {
     let monthNumber = Number(monthString);
     const yearString = this.expenseList.responseExpenses.requestedDate.substring(0, 4);
     let yearNumber = Number(yearString);
-    monthNumber = monthNumber - 1;
-    if (monthNumber === 0) {
+    monthNumber -= 1;
+    if (monthNumber < 1) {
       monthNumber = 12;
       yearNumber = yearNumber - 1;
     }
@@ -118,8 +125,8 @@ export class ExpenseCurrentMonthHeaderComponent implements OnInit {
     let monthNumber = Number(monthString);
     const yearString = this.expenseList.responseExpenses.requestedDate.substring(0, 4);
     let yearNumber = Number(yearString);
-    monthNumber = monthNumber + 1;
-    if (monthNumber === 12) {
+    monthNumber += 1;
+    if (monthNumber > 12) {
       monthNumber = 1;
       yearNumber = yearNumber + 1;
     }
@@ -133,18 +140,32 @@ export class ExpenseCurrentMonthHeaderComponent implements OnInit {
     this.expenseList.getAllExpenses();
   }
 
-  setYears(): void {
-    this.selectedYear = Number(this.expenseList.responseExpenses.currentDate.substring(0, 4));
+  createOptionLists(): void {
     const date = this.expenseList.responseExpenses.currentDate;
-    let dateNumber = Number(date.substring(0, 4));
-    let step;
-    this.years = [2021];
-    for (step = 0; step < 5; step++) {
-      dateNumber -= 1;
-      this.years.push(dateNumber);
+    let yearNumber = Number(date.substring(0, 4));
+    this.yearList = [this.getRequestedYear()];
+    if (yearNumber !== this.getRequestedYear()) {
+      this.yearList.push(yearNumber);
     }
-  }
+    for (let i = 0; i < 5; i++) {
+      yearNumber -= 1;
+      if (yearNumber !== this.getRequestedYear()) {
+        this.yearList.push(yearNumber);
+      }
+    }
 
+    this.monthNameList = [this.getMonthName()];
+    for (const element of this.monthNames) {
+      if (this.getMonthName() !== element) {
+        this.monthNameList.push(element);
+      }
+    }
+
+    this.requestedYear = this.getRequestedYear();
+    this.requestedMonthName = this.getMonthName();
+    this.flagEditDateActive = true;
+    this.formDateGroup();
+  }
 
   dateSubmit(): void {
     const month: any = {
@@ -152,6 +173,19 @@ export class ExpenseCurrentMonthHeaderComponent implements OnInit {
       year: this.formDate.value.year
     };
 
+    this.getMonthStringNumber(month);
+
+    const year = month.year;
+
+    this.expenseRequest.getCriteriaRequest.requestedDate = year + '-' + this.getMonthStringNumber(month) + '-01';
+
+    this.flagEditDateActive = false;
+
+    this.expenseList.getAllExpenses();
+
+  }
+
+  getMonthStringNumber(month: any): string {
     let monthNumber: string;
     switch (month.month) {
       case 'January':
@@ -193,27 +227,15 @@ export class ExpenseCurrentMonthHeaderComponent implements OnInit {
       default:
         monthNumber = '01';
     }
-    const year = month.year;
 
-    this.expenseRequest.getCriteriaRequest.requestedDate = year + '-' + monthNumber + '-01';
-    console.log(this.expenseRequest.getCriteriaRequest.requestedDate);
-
-    this.flagEditDateActive = false;
-
-    this.expenseList.getAllExpenses();
-
-  }
-
-  setEditDateActive(): void {
-    this.setYears();
-    this.flagEditDateActive = true;
+    return monthNumber;
   }
 
   setEditDateInactive(): void {
     this.flagEditDateActive = false;
   }
 
-  getYearNumber(): number {
+  getRequestedYear(): number {
     if (null != this.expenseList.responseExpenses.requestedDate) {
       return Number(this.expenseList.responseExpenses.requestedDate.substring(0, 4));
     }
