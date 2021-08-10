@@ -21,7 +21,7 @@
     <li class="float-left">
       &nbsp;
     </li>
-    <li class="float-left" formGroupName="search">
+    <li class="float-left " formGroupName="search">
       <label for="search">&nbsp;</label>
       <input type="text" class="float-right" formControlName="content" name="content" id="search"
              placeholder="Search" style="width: 150px">
@@ -47,7 +47,7 @@
         </li>
         <li class="float-left" formGroupName="fromPayDate">
           <label class="float-left" for="fromPayDate">Pay Day: from</label>
-          <input type="text" class="float-right" formControlName="content" name="fromPayDate"
+          <input type="text" formControlName="content" name="fromPayDate"
                  id="fromPayDate" placeholder="{{1}}" style="width: 40px">
         </li>
         <li class="float-left" formGroupName="toPayDate">
@@ -59,3 +59,5 @@
     </li>
   </ul>
 </form>
+
+

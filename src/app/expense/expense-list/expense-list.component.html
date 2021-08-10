@@ -138,7 +138,7 @@
             </button>
           </td>
           <th scope="col">
-            <input type="text" class="form-control" formControlName="user" name="user" id="user">
+            <input type="text" formControlName="user" name="user" id="user">
           </th>
           <th scope="col">
             <input type="text" class="form-control" formControlName="amount" name="amount" id="amount">
@@ -163,24 +163,19 @@
         </tr>
         <tr *ngIf="edit">
           <td>
-            <button type="button" class="btn-floating btn-light-blue">
-              <i class="material-icons"></i>
-            </button>
           </td>
         </tr>
-        <tr *ngFor="let expense of responseExpenses.expenses" class="table-stripped">
+        <tr *ngFor="let expense of responseExpenses.expenses" class="table-stripped" style="max-height: 25px">
           <td *ngIf="!edit || edit && expense.id != expenseId">
             <button type="button" class="btn-floating btn-light-red"
                     (click)="deleteExpense(expense.id)">
               <i class="material-icons">remove</i>
             </button>
-            <button type="button" class="btn-floating
-             btn-light-blue"
+            <button type="button" class="btn-floating btn-light-blue"
                     [routerLink]="['/expense-details/', expense.id]">
               <i class="material-icons">visibility</i>
             </button>
-            <button type="button" class="btn-floating
-             btn-light-blue" (click)="setEditOn(expense.id)">
+            <button type="button" class="btn-floating btn-light-blue" (click)="setEditOn(expense.id)">
               <i class="material-icons">edit</i>
             </button>
           </td>

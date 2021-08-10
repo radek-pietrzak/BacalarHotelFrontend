@@ -127,11 +127,14 @@ export class ExpenseSpecFormComponent {
   }
 
   getPayDateFromDay(day: string): string {
-    const dayNumber = Number(day);
-    if (dayNumber > 9) {
-      return this.expenseList.responseExpenses.requestedDate.substring(0, 8) + day;
-    } else {
-      return this.expenseList.responseExpenses.requestedDate.substring(0, 8) + '0' + day;
+    if (null !== day) {
+      const dayNumber = Number(day);
+      if (dayNumber > 9) {
+        return this.expenseList.responseExpenses.requestedDate.substring(0, 8) + day;
+      } else {
+        return this.expenseList.responseExpenses.requestedDate.substring(0, 8) + '0' + day;
+      }
     }
   }
+
 }

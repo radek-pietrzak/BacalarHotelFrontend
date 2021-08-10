@@ -242,4 +242,10 @@ export class ExpenseCurrentMonthHeaderComponent implements OnInit {
     }
     return 2021;
   }
+
+  changeToCurrentMonth(): void {
+    this.setEditDateInactive();
+    this.expenseRequest.getCriteriaRequest.requestedDate = this.expenseList.responseExpenses.currentDate;
+    this.expenseList.getAllExpenses();
+  }
 }
