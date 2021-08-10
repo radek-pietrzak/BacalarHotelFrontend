@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="setNewSearchCriteria()">
+<form [formGroup]="form" (ngSubmit)="submitSpecCriteria()">
   <ul class="float-right">
     <li class="float-left">
       <ul>
@@ -23,34 +23,37 @@
     </li>
     <li class="float-left" formGroupName="search">
       <label for="search">&nbsp;</label>
-      <input type="text" class="form-control float-right" formControlName="content" name="content" id="search"
+      <input type="text" class="float-right" formControlName="content" name="content" id="search"
              placeholder="Search" style="width: 150px">
     </li>
     <li class="float-left">
       <ul>
         <li class="float-left" formGroupName="fromAmount">
-          <label for="fromAmount">Amount</label>
-          <input type="text" class="form-control float-right" formControlName="content" name="fromAmount"
-                 id="fromAmount" placeholder="from" style="width: 100px">
+          <label for="fromAmount">Amount:</label>
+          <input type="text" class="float-right" formControlName="content" name="fromAmount"
+                 id="fromAmount" placeholder="from" style="width: 80px">
         </li>
         <li class="float-left" formGroupName="toAmount">
           <label for="toAmount">&nbsp;</label>
-          <input type="text" class="form-control float-right" formControlName="content" name="toAmount"
-                 id="toAmount" placeholder="to" style="width: 100px">
+          <input type="text" class="float-right" formControlName="content" name="toAmount"
+                 id="toAmount" placeholder="to" style="width: 80px">
         </li>
       </ul>
     </li>
     <li class="float-left">
       <ul>
+        <li class="float-left">
+          &nbsp;
+        </li>
         <li class="float-left" formGroupName="fromPayDate">
-          <label for="fromPayDate">Pay Date: &nbsp;&nbsp;from</label>
-          <input type="date" class="form-control float-right" formControlName="content" name="fromPayDate"
-                 id="fromPayDate" style="width: 150px">
+          <label class="float-left" for="fromPayDate">Pay Day: from</label>
+          <input type="text" class="float-right" formControlName="content" name="fromPayDate"
+                 id="fromPayDate" placeholder="{{1}}" style="width: 40px">
         </li>
         <li class="float-left" formGroupName="toPayDate">
-          <label for="toPayDate">to</label>
-          <input type="date" class="form-control float-right" formControlName="content" name="toPayDate"
-                 id="toPayDate" style="width: 150px">
+          <label for="toPayDate">to:</label>
+          <input type="text" class="float-right" formControlName="content" name="toPayDate"
+                 id="toPayDate" placeholder="{{getLastDayOfMonth()}}" style="width: 40px">
         </li>
       </ul>
     </li>

@@ -15,6 +15,7 @@ export class ExpenseSpecFormComponent {
   private expenseList: ExpenseListComponent;
   private expenseCriteriaRequest: ExpenseCriteriaRequestService;
   clearBtnDisabled: boolean;
+  days: number[];
 
   constructor(expenseList: ExpenseListComponent, expenseCriteriaRequest: ExpenseCriteriaRequestService) {
     this.expenseList = expenseList;
@@ -72,7 +73,7 @@ export class ExpenseSpecFormComponent {
     return this.form.get('toPayDate.content');
   }
 
-  setNewSearchCriteria(): void {
+  submitSpecCriteria(): void {
     const searchCriterion: SearchSpecCriterion = {
       key: '',
       operation: 'CONTAINS',
@@ -94,13 +95,13 @@ export class ExpenseSpecFormComponent {
     const fromPayDateCriterion: SearchSpecCriterion = {
       key: 'payDate',
       operation: 'GREATER',
-      content: this.fromPayDateContent.value
+      content: this.getPayDateFromDay(this.fromPayDateContent.value)
     };
 
     const toPayDateCriterion: SearchSpecCriterion = {
       key: 'payDate',
       operation: 'LESS',
-      content: this.toPayDateContent.value
+      content: this.getPayDateFromDay(this.toPayDateContent.value)
     };
 
     this.expenseCriteriaRequest.setCriteriaRequestBySpec(
@@ -117,7 +118,20 @@ export class ExpenseSpecFormComponent {
 
   clearSearch(): void {
     this.form.reset();
-    this.setNewSearchCriteria();
+    this.submitSpecCriteria();
     this.clearBtnDisabled = true;
+  }
+
+  getLastDayOfMonth(): string {
+    return this.expenseList.responseExpenses.requestedDate.substring(8);
+  }
+
+  getPayDateFromDay(day: string): string {
+    const dayNumber = Number(day);
+    if (dayNumber > 9) {
+      return this.expenseList.responseExpenses.requestedDate.substring(0, 8) + day;
+    } else {
+      return this.expenseList.responseExpenses.requestedDate.substring(0, 8) + '0' + day;
+    }
   }
 }
